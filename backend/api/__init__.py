@@ -12,6 +12,13 @@ from core import settings
 app = FastAPI(title=settings.TITLE, description=settings.DESC)
 
 
+def init_db():
+    from core import Base, engine
+    from models import ModelMain
+
+    Base.metadata.create_all(bind=engine)
+
+
 app.include_router(v1, prefix="/api")
 
 
@@ -22,3 +29,5 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+init_db()
