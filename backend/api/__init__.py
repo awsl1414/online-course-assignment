@@ -14,7 +14,7 @@ app = FastAPI(title=settings.TITLE, description=settings.DESC)
 
 def init_db():
     from core import Base, engine
-    from models import ModelMain
+    from models import Main, Origin, Software, User
 
     Base.metadata.create_all(bind=engine)
 
