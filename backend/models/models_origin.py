@@ -3,7 +3,7 @@ from core import Base
 
 
 class Origin(Base):
-    __tablename__ = "原始表"
+    __tablename__ = "OriginTable"
     id = Column(Integer, primary_key=True)
     teacherName = Column(String, nullable=False)
     courseName = Column(String, nullable=False)
