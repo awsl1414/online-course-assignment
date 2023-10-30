@@ -6,6 +6,6 @@ class User(Base):
     __tablename__ = "UserTable"
     id = Column(Integer, primary_key=True)
     username = Column(String, nullable=False)
-    empno = Column(String, nullable=False, comment="工号")
+    job_number = Column(String, nullable=False, comment="工号")
     hashed_password = Column(String, nullable=False)
-    role = Column(String, nullable=False, comment="角色")
+    permission = Column(Integer, nullable=False, comment="权限")

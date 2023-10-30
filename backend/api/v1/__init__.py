@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-
-from .endpoints import *
+from .router_login import router_login
+from .router_user import router_user
 
 v1 = APIRouter(prefix="/v1")
 

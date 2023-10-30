@@ -8,7 +8,7 @@ class Main(Base):
     teacherName = Column(String, nullable=False)
     courseName = Column(String, nullable=False)
     className = Column(String, nullable=False)
-    classroomName = Column(String, nullable=False)
+    classRoomName = Column(String, nullable=False)
     week = Column(Integer, nullable=False)
     weekDay = Column(Integer, nullable=False)
     section = Column(Integer, nullable=False)

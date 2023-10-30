@@ -9,15 +9,14 @@ from crud import create_user
 router_user = APIRouter(tags=["用户相关"])
 
 
-@router_user.post("/create_user", response_model=UserInInfo, summary="创建用户")
+@router_user.post("/create_user", summary="创建用户")
 def create_user_api(user: UserInInfo, db: Session = Depends(get_db)):
     db_user = create_user(
-        db,
+        db=db,
         username=user.username,
         password=get_password_hash(user.password),
-        # password="12345678",
-        empno=user.empno,
-        role=user.role
+        job_number=user.job_number,
+        permission=user.permission,
     )
     if not db_user:
         raise HTTPException(status_code=400, detail="用户名已存在")
@@ -38,5 +37,5 @@ def user_update(
         result.username = user_form.username
         result.hashed_password = get_password_hash(user_form.password)
         db.commit(result)
-        return Response200(data=result)
+        return Response200(msg="更新成功")
     return Response400(msg="更新失败")

@@ -4,8 +4,8 @@ from pydantic import BaseModel
 class UserIn(BaseModel):
     username: str
     password: str
-    empno: str
-    role: str
+    job_number:str
+    permission:int
 
 
 class UserInInfo(UserIn):
@@ -15,7 +15,7 @@ class UserInInfo(UserIn):
             "example": {
                 "username": "root",
                 "password": "123456",
-                "empno": "66668888",
-                "role": "0"
+                "jon_number": "66668888",
+                "permission": 2
             }
         }

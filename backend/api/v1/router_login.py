@@ -21,7 +21,7 @@ def user_login(
             response.set_cookie(
                 key="token", value=token, httponly=True, samesite="strict"
             )
-            return ResponseToken(data={"token": f"bearer {token}"}, access_token=token)
+            return ResponseToken(token=token, msg="请求")
     return Response400(msg="请求失败")
 
 

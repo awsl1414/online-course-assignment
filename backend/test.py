@@ -1,6 +1,6 @@
 {
     "username": "root",
     "password": "123456",
-    "empno": "66668888",
-    "role": "0",
+    "job_number": "66668888",
+    "permission": 2
 }
