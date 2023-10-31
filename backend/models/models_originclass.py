@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Enum
 from core import Base
 
 
@@ -6,8 +6,6 @@ class Origin(Base):
     __tablename__ = "OriginTable"
     id = Column(Integer, primary_key=True)
     teacherName = Column(String, nullable=False)
-    courseName = Column(String, nullable=False)
-    className = Column(String, nullable=False)
-    classroomName = Column(String, nullable=False, comment="机房")
+    courseName = Column(Enum("计算计网络", "无人机模拟"),nullable=False)
     population = Column(Integer, nullable=False)
     software = Column(String, nullable=False)
