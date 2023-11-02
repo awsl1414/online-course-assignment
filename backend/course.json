@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "teacherName": "钱永涛", "courseName": "无人机模拟训练", "className": "23数媒01(专)", "population": 50, "software": "无人机模拟器", "cycle": "1/16"
+    },
+    {
+      "teacherName": "韩子霏", "courseName": "摄影摄像技术", "className": "23数媒02(专)", "population": 45, "software": "photoshop", "cycle": "1/8"
+    },
+    {
+      "teacherName": "网页设计", "courseName": "孙雅娟", "className": "23计算机网络(网络攻防专)03", "population": 50, "software": "dreamweaver", "cycle": "1/8"
+    },
+    {
+      "teacherName": "王兆广", "courseName": "数据库应用技术", "className": "23软件(WEB开发专)02", "population": 45, "software": "mysql", "cycle": "8/16"
+    },
+    {
+      "teacherName": "杨明明", "courseName": "Web前端开发技术", "className": "23软件(UI设计专)03", "population": 60, "software": "vscode", "cycle": "1/16"
+    },
+    {
+      "teacherName": "赵增敏", "courseName": "Java程序设计", "className": "23软件(UI设计专)07", "population": 57, "software": "java/eclipse", "cycle": "1/16"
+    },
+    {
+      "teacherName": "张庆莉", "courseName": "大学信息技术", "className": "23能动02", "population": 60, "software": "word", "cycle": "1/8"
+    },
+    {
+      "teacherName": "王宪凡", "courseName": "Linux操作系统", "className": "23计算机网络(网络管理专)04", "population": 52, "software": "vmware", "cycle": "1/8"
+    },
+    {
+      "teacherName": "岳春龙", "courseName": "网站推广技术", "className": "21计算机网络(驻)01", "population": 54, "software": "chrome", "cycle": "8/16"
+    },
+    {
+      "teacherName": "张铭坤", "courseName": "计算机美术基础", "className": "23数媒(无人机专)02", "population": 30, "software": "photoshop", "cycle": "1/16"
+    },
+    {
+      "teacherName": "朱森", "courseName": "移动互联开发实训", "className": "移动互联开发实训", "population": 45, "software": "xcode", "cycle": "1/16"
+    }
+  ]
+}

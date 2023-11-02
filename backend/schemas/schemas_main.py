@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class MainIn(BaseModel):
+class MainClassIn(BaseModel):
     teacherName: str
     courseName: str
     className: str
