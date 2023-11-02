@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Integer, Enum
 from core import Base
 
 
-class Main(Base):
-    __tablename__ = "MainTable"
+class MainClass(Base):
+    __tablename__ = "MainClassTable"
     id = Column(Integer, primary_key=True)
     teacherName = Column(String, nullable=False)
     courseName = Column(Enum("计算计网络", "无人机模拟"), nullable=False)
@@ -12,11 +12,12 @@ class Main(Base):
     classRoomName = Column(String, nullable=False)
     week = Column(Integer, nullable=False)
     weekDay = Column(Integer, nullable=False)
-    className = Column(String, nullable=False)
+    lesson = Column(String, nullable=False)
+    littleLesson = Column(String, nullable=False)
     
     
     
-    section = Column(Integer, nullable=False)
     
     
-    measure = Column(Enum("0", "1", "2"), nullable=False, comment="小节")
+    
+

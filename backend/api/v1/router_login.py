@@ -3,8 +3,9 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 from sqlalchemy.orm import Session
 from models import User
-from core import verify_password, create_access_token, get_current_user, get_db
-from schemas import Response200, Response400, ResponseToken, UserIn, UserInInfo
+from core import verify_password, create_access_token,  get_db
+from schemas import Response200, Response400, ResponseToken, UserIn
+from crud import get_current_user
 
 router_login = APIRouter(tags=["登录相关"])
 
@@ -21,7 +22,11 @@ def user_login(
             response.set_cookie(
                 key="token", value=token, httponly=True, samesite="strict"
             )
-            return ResponseToken(token=token, msg="请求成功")
+            user_dict = {}
+            user_dict["id"] = user.id
+            user_dict["username"] = user.username
+            user_dict["permission"] = user.permission
+            return ResponseToken(token=token, user=str(user_dict), msg="请求成功")
     return Response400(msg="请求失败")
 
 

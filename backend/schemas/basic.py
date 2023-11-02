@@ -18,14 +18,13 @@ class ResponseBasic(BaseModel):
     msg: Any = Field(default=None, description="数据结果")
 
 
-
 class Response200(ResponseBasic):
     pass
 
 
 class ResponseToken(Response200):
     token: str
-
+    user: str
 
 
 class Response400(ResponseBasic):

@@ -2,25 +2,31 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from sqlalchemy.orm import Session
 from models import User
-from core import get_current_user, get_db, get_password_hash
-from schemas import Response200, Response400, UserIn, UserInInfo
-from crud import create_user
+from core import  get_db, get_password_hash
+from schemas import Response200, Response400, UserIn
+from crud import create_user, get_current_user
+
 
 router_user = APIRouter(tags=["用户相关"])
 
 
+@router_user.get("/get_current_user", summary="获取当前用户")
+def get_current_user_api(db:Session = Depends(get_db)):
+    return get_current_user(db=db)
+
 @router_user.post("/create_user", summary="创建用户")
-def create_user_api(user: UserInInfo, db: Session = Depends(get_db)):
-    db_user = create_user(
+def create_user_api(user: UserIn, db: Session = Depends(get_db)):
+    user = create_user(
         db=db,
         username=user.username,
         password=get_password_hash(user.password),
         job_number=user.job_number,
         permission=user.permission,
     )
-    if not db_user:
+    if not user:
         raise HTTPException(status_code=400, detail="用户名已存在")
-    return db_user
+    return user
+
 
 
 @router_user.put("/user", summary="修改信息")
