@@ -6,7 +6,7 @@ import os
 
 from sqlalchemy.orm import Session
 
-from models.models_originclass import OriginClass
+from models.models_origin_class import OriginClass
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

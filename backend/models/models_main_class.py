@@ -14,10 +14,4 @@ class MainClass(Base):
     weekDay = Column(Integer, nullable=False)
     lesson = Column(String, nullable=False)
     littleLesson = Column(String, nullable=False)
-    
-    
-    
-    
-    
-    
-
+    cycle = Column(String, nullable=False)
