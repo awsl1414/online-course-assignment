@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from sqlalchemy.orm import Session
 from models import User
-from core import  get_db, get_password_hash
+from core import get_db, get_password_hash
 from schemas import Response200, Response400, UserIn
 from crud import create_user, get_current_user
 
@@ -11,8 +11,9 @@ router_user = APIRouter(tags=["用户相关"])
 
 
 @router_user.get("/get_current_user", summary="获取当前用户")
-def get_current_user_api(db:Session = Depends(get_db)):
+def get_current_user_api(db: Session = Depends(get_db)):
     return get_current_user(db=db)
+
 
 @router_user.post("/create_user", summary="创建用户")
 def create_user_api(user: UserIn, db: Session = Depends(get_db)):
@@ -23,10 +24,8 @@ def create_user_api(user: UserIn, db: Session = Depends(get_db)):
         job_number=user.job_number,
         permission=user.permission,
     )
-    if not user:
-        raise HTTPException(status_code=400, detail="用户名已存在")
-    return user
 
+    return user
 
 
 @router_user.put("/user", summary="修改信息")

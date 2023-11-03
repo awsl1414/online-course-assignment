@@ -5,6 +5,7 @@ from jose import jwt, JWTError
 
 from models import User
 from core import get_db, settings
+from schemas import Response400
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/login")
 
@@ -23,7 +24,7 @@ def get_current_user(
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    
+
     try:
         payload = jwt.decode(
             token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
@@ -42,13 +43,15 @@ def get_current_user(
 def create_user(
     db: Session, username: str, password: str, job_number: str, permission: int
 ):
-    user = User(
-        username=username,
-        hashed_password=password,
-        job_number=job_number,
-        permission=permission,
-    )
-    db.add(user)
-    db.commit()
-    db.refresh(user)
-    return user
+    if db.query(User).filter(User.username).first():
+        user = User(
+            username=username,
+            hashed_password=password,
+            job_number=job_number,
+            permission=permission,
+        )
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+        return user
+    return Response400(msg="用户已存在")
