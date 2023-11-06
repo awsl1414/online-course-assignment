@@ -4,7 +4,7 @@ from core import Base
 
 class OriginClass(Base):
     __tablename__ = "OriginClassTable"
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True)
     teacherName = Column(String, nullable=False)
     courseName = Column(String, nullable=False)
     className = Column(String, nullable=False)

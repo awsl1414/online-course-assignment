@@ -6,7 +6,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 from .v1 import v1
-from core import settings, insert_courses_from_json, get_db
+from core import (
+    settings,
+    insert_main_courses_from_json,
+    insert_origin_courses_from_json,
+    get_db,
+)
 
 
 app = FastAPI(title=settings.TITLE, description=settings.DESC)
@@ -19,7 +24,8 @@ def init_db():
     Base.metadata.create_all(bind=engine)
     db = next(get_db())  # 获取数据库session
     try:
-        insert_courses_from_json(db)
+        insert_main_courses_from_json(db)
+        insert_origin_courses_from_json(db)
     finally:
         db.close()
 
