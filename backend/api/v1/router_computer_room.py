@@ -28,6 +28,8 @@ def get_computer_room_software_api(
 
 
 @router_computer_room.get("/get_computer_room_floor", summary="机房楼层相关查询")
-def get_computer_room_floor_api(db: Session = Depends(get_db)):
-    result = get_computer_room_floor(db=db)
+def get_computer_room_floor_api(
+    db: Session = Depends(get_db), computerRoom: Optional[str] = Query(None)
+):
+    result = get_computer_room_floor(db=db, computerRoom=computerRoom)
     return {"code": 200, "msg": "请求成功", "floor": result}

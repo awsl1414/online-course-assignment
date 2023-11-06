@@ -22,22 +22,24 @@ def get_computer_room_software(
     return query.all()
 
 
-def get_computer_room_floor(db: Session):
+def get_computer_room_floor(db: Session, computerRoom: Optional[str] = Query(None)):
     query = db.query(OriginClass).with_entities(MainClass.computerRoomName).all()
     # print(query)
 
-    b_set = set()
+    floor_set = set()
     c_set = set()
     floor_dict = {}
     for item in query:
-        if item[0][:1] == "B":
-            b_set.add(item[0])
-            floor_dict.update({f"{item[0][:2]}": f"{list(b_set)}"})
-        if item[0][:1] == "C":
-            c_set.add(item[0])
-            floor_dict.update({f"{item[0][:2]}": f"{list(c_set)}"})
+        if computerRoom:
+            if item[0][:1] == computerRoom[:1]:
+                floor_set.add(item[0])
+                floor_dict.update({f"{item[0][:2]}": f"{list(floor_set)}"})
+        else:
+            if item[0][:1] == "B":
+                floor_set.add(item[0])
+                floor_dict.update({f"{item[0][:2]}": f"{list(floor_set)}"})
+            if item[0][:1] == "C":
+                floor_set.add(item[0])
+                floor_dict.update({f"{item[0][:2]}": f"{list(floor_set)}"})
 
-    # print("b_set:", b_set)
-    # print("c_set:", c_set)
-    # print("floor_dict", floor_dict)
     return floor_dict
