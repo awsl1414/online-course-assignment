@@ -10,12 +10,13 @@ def get_computer_room_software(
     db: Session,
     computerRoomName: Optional[str] = Query(None),
 ):
-    query = db.query(MainClass)
+    query = db.query(MainClass).with_entities(MainClass.software)
 
     filters = {
-        MainClass.computerRoomName == computerRoomName,
+        MainClass.computerRoomName: computerRoomName,
     }
     for column, value in filters.items():
         if value:
             query = query.filter(column == value)
+
     return query.all()

@@ -25,7 +25,7 @@
       "teacherName": "王宪凡", "courseName": "Linux操作系统", "className": "23计算机网络(网络管理专)04", "population": 52, "software": "vmware","computerRoomName":"C501","week":16,"weekDay":1, "lesson":"lesson","littleLesson":"1","cycle": "1/8"
     },
     {
-      "teacherName": "岳春龙", "courseName": "网站推广技术", "className": "21计算机网络(驻)01", "population": 54, "software": "chrome","computerRoomName":"C501","week":8,"weekDay":1, "lesson":"lesson","littleLesson":"2","cycle": "8/16"
+      "teacherName": "岳春龙", "courseName": "网站推广技术", "className": "21计算机网络(驻)01", "population": 54, "software": "chrome","computerRoomName":"C502","week":8,"weekDay":1, "lesson":"lesson","littleLesson":"2","cycle": "8/16"
     },
     {
       "teacherName": "张铭坤", "courseName": "计算机美术基础", "className": "23数媒(无人机专)02", "population": 30, "software": "photoshop","computerRoomName":"C501","week":1,"weekDay":1, "lesson":"lesson","littleLesson":"1","cycle": "1/16"
