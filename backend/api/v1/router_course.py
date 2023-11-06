@@ -15,6 +15,7 @@ router_course = APIRouter(tags=["课程相关"])
 def get_origin_course_api(
     db: Session = Depends(get_db),
     teacherName: Optional[str] = Query(None),
+    teacherRoom: Optional[str] = Query(None),
     courseName: Optional[str] = Query(None),
     className: Optional[str] = Query(None),
     software: Optional[str] = Query(None),
@@ -23,6 +24,7 @@ def get_origin_course_api(
     result = get_origin_course(
         db=db,
         teacherName=teacherName,
+        teacherRoom=teacherRoom,
         courseName=courseName,
         className=className,
         software=software,
@@ -37,6 +39,7 @@ def get_origin_course_api(
 def get_main_course_api(
     db: Session = Depends(get_db),
     teacherName: Optional[str] = Query(None),
+    teacherRoom: Optional[str] = Query(None),
     courseName: Optional[str] = Query(None),
     className: Optional[str] = Query(None),
     population: Optional[int] = Query(None),
@@ -51,6 +54,7 @@ def get_main_course_api(
     result = get_main_course(
         db=db,
         teacherName=teacherName,
+        teacherRoom=teacherRoom,
         courseName=courseName,
         className=className,
         population=population,

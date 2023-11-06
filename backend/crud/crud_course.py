@@ -9,6 +9,7 @@ from core import get_db
 def get_origin_course(
     db: Session,
     teacherName: Optional[str] = Query(None),
+    teacherRoom: Optional[str] = Query(None),
     courseName: Optional[str] = Query(None),
     className: Optional[str] = Query(None),
     software: Optional[str] = Query(None),
@@ -18,6 +19,7 @@ def get_origin_course(
 
     filters = {
         OriginClass.teacherName: teacherName,
+        OriginClass.teacherRoom: teacherRoom,
         OriginClass.courseName: courseName,
         OriginClass.className: className,
         OriginClass.software: software,
@@ -32,6 +34,7 @@ def get_origin_course(
 def get_main_course(
     db: Session,
     teacherName: Optional[str] = Query(None),
+    teacherRoom: Optional[str] = Query(None),
     courseName: Optional[str] = Query(None),
     className: Optional[str] = Query(None),
     population: Optional[int] = Query(None),
@@ -47,6 +50,7 @@ def get_main_course(
 
     filters = {
         MainClass.teacherName: teacherName,
+        MainClass.teacherRoom: teacherRoom,
         MainClass.courseName: courseName,
         MainClass.className: className,
         MainClass.population: population,

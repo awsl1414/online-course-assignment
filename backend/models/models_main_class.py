@@ -6,6 +6,7 @@ class MainClass(Base):
     __tablename__ = "MainClassTable"
     id = Column(Integer, primary_key=True, index=True)
     teacherName = Column(String, nullable=False)
+    teacherRoom = Column(String, nullable=False)
     courseName = Column(String, nullable=False)
     className = Column(String, nullable=False)
     population = Column(Integer, nullable=False)

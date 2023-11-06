@@ -1,37 +1,158 @@
 {
   "data": [
     {
-      "teacherName": "钱永涛", "courseName": "无人机模拟训练", "className": "23数媒01(专)", "population": 50, "software": "无人机模拟器","computerRoomName":"C501","week":16,"weekDay":1, "lesson":"1-2","littleLesson":"1","cycle": "1/16"
+      "teacherName": "钱永涛",
+      "teacherRoom": "None",
+      "courseName": "无人机模拟训练",
+      "className": "23数媒01(专)",
+      "population": 50,
+      "software": "无人机模拟器",
+      "computerRoomName": "C501",
+      "week": 16,
+      "weekDay": 1,
+      "lesson": "1-2",
+      "littleLesson": "1",
+      "cycle": "1/16"
     },
     {
-      "teacherName": "韩子霏", "courseName": "摄影摄像技术", "className": "23数媒02(专)", "population": 45, "software": "photoshop","computerRoomName":"C501","week":16,"weekDay":1, "lesson":"3-4","littleLesson":"2","cycle": "1/8"
+      "teacherName": "韩子霏",
+      "teacherRoom": "None",
+      "courseName": "摄影摄像技术",
+      "className": "23数媒02(专)",
+      "population": 45,
+      "software": "photoshop",
+      "computerRoomName": "C501",
+      "week": 16,
+      "weekDay": 1,
+      "lesson": "3-4",
+      "littleLesson": "2",
+      "cycle": "1/8"
     },
     {
-      "teacherName": "网页设计", "courseName": "孙雅娟", "className": "23计算机网络(网络攻防专)03", "population": 50, "software": "dreamweaver","computerRoomName":"C501","week":11,"weekDay":1, "lesson":"7-8","littleLesson":"1","cycle": "1/8"
+      "teacherName": "网页设计",
+      "teacherRoom": "None",
+      "courseName": "孙雅娟",
+      "className": "23计算机网络(网络攻防专)03",
+      "population": 50,
+      "software": "dreamweaver",
+      "computerRoomName": "C501",
+      "week": 11,
+      "weekDay": 1,
+      "lesson": "7-8",
+      "littleLesson": "1",
+      "cycle": "1/8"
     },
     {
-      "teacherName": "王兆广", "courseName": "数据库应用技术", "className": "23软件(WEB开发专)02", "population": 45, "software": "mysql","computerRoomName":"C501","week":14,"weekDay":1, "lesson":"5-6","littleLesson":"1","cycle": "8/16"
+      "teacherName": "王兆广",
+      "teacherRoom": "None",
+      "courseName": "数据库应用技术",
+      "className": "23软件(WEB开发专)02",
+      "population": 45,
+      "software": "mysql",
+      "computerRoomName": "C501",
+      "week": 14,
+      "weekDay": 1,
+      "lesson": "5-6",
+      "littleLesson": "1",
+      "cycle": "8/16"
     },
     {
-      "teacherName": "杨明明", "courseName": "Web前端开发技术", "className": "23软件(UI设计专)03", "population": 60, "software": "vscode","computerRoomName":"C501","week":6,"weekDay":1, "lesson":"1-2","littleLesson":"2","cycle": "1/16"
+      "teacherName": "杨明明",
+      "teacherRoom": "None",
+      "courseName": "Web前端开发技术",
+      "className": "23软件(UI设计专)03",
+      "population": 60,
+      "software": "vscode",
+      "computerRoomName": "C501",
+      "week": 6,
+      "weekDay": 1,
+      "lesson": "1-2",
+      "littleLesson": "2",
+      "cycle": "1/16"
     },
     {
-      "teacherName": "赵增敏", "courseName": "Java程序设计", "className": "23软件(UI设计专)07", "population": 57, "software": "java/eclipse","computerRoomName":"C501","week":16,"weekDay":1, "lesson":"3-4","littleLesson":"0","cycle": "1/16"
+      "teacherName": "赵增敏",
+      "teacherRoom": "None",
+      "courseName": "Java程序设计",
+      "className": "23软件(UI设计专)07",
+      "population": 57,
+      "software": "java/eclipse",
+      "computerRoomName": "C501",
+      "week": 16,
+      "weekDay": 1,
+      "lesson": "3-4",
+      "littleLesson": "0",
+      "cycle": "1/16"
     },
     {
-      "teacherName": "张庆莉", "courseName": "大学信息技术", "className": "23能动02", "population": 60, "software": "word","computerRoomName":"C501","week":15,"weekDay":1, "lesson":"lesson","littleLesson":"1-2","cycle": "1/8"
+      "teacherName": "张庆莉",
+      "teacherRoom": "None",
+      "courseName": "大学信息技术",
+      "className": "23能动02",
+      "population": 60,
+      "software": "word",
+      "computerRoomName": "C501",
+      "week": 15,
+      "weekDay": 1,
+      "lesson": "lesson",
+      "littleLesson": "1-2",
+      "cycle": "1/8"
     },
     {
-      "teacherName": "王宪凡", "courseName": "Linux操作系统", "className": "23计算机网络(网络管理专)04", "population": 52, "software": "vmware","computerRoomName":"C501","week":16,"weekDay":1, "lesson":"lesson","littleLesson":"1","cycle": "1/8"
+      "teacherName": "王宪凡",
+      "teacherRoom": "None",
+      "courseName": "Linux操作系统",
+      "className": "23计算机网络(网络管理专)04",
+      "population": 52,
+      "software": "vmware",
+      "computerRoomName": "C501",
+      "week": 16,
+      "weekDay": 1,
+      "lesson": "lesson",
+      "littleLesson": "1",
+      "cycle": "1/8"
     },
     {
-      "teacherName": "岳春龙", "courseName": "网站推广技术", "className": "21计算机网络(驻)01", "population": 54, "software": "chrome","computerRoomName":"C502","week":8,"weekDay":1, "lesson":"lesson","littleLesson":"2","cycle": "8/16"
+      "teacherName": "岳春龙",
+      "teacherRoom": "None",
+      "courseName": "网站推广技术",
+      "className": "21计算机网络(驻)01",
+      "population": 54,
+      "software": "chrome",
+      "computerRoomName": "C502",
+      "week": 8,
+      "weekDay": 1,
+      "lesson": "lesson",
+      "littleLesson": "2",
+      "cycle": "8/16"
     },
     {
-      "teacherName": "张铭坤", "courseName": "计算机美术基础", "className": "23数媒(无人机专)02", "population": 30, "software": "photoshop","computerRoomName":"C501","week":1,"weekDay":1, "lesson":"lesson","littleLesson":"1","cycle": "1/16"
+      "teacherName": "张铭坤",
+      "teacherRoom": "None",
+      "courseName": "计算机美术基础",
+      "className": "23数媒(无人机专)02",
+      "population": 30,
+      "software": "photoshop",
+      "computerRoomName": "C501",
+      "week": 1,
+      "weekDay": 1,
+      "lesson": "lesson",
+      "littleLesson": "1",
+      "cycle": "1/16"
     },
     {
-      "teacherName": "朱森", "courseName": "移动互联开发实训", "className": "移动互联开发实训", "population": 45, "software": "xcode","computerRoomName":"C501","week":16,"weekDay":1, "lesson":"lesson","littleLesson":"1","cycle": "1/16"
+      "teacherName": "朱森",
+      "teacherRoom": "None",
+      "courseName": "移动互联开发实训",
+      "className": "移动互联开发实训",
+      "population": 45,
+      "software": "xcode",
+      "computerRoomName": "C501",
+      "week": 16,
+      "weekDay": 1,
+      "lesson": "lesson",
+      "littleLesson": "1",
+      "cycle": "1/16"
     }
   ]
 }
