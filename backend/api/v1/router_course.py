@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Depends, Query
-
+from fastapi import APIRouter, Depends, Query, File, UploadFile, Form
 from typing import List, Optional
 from sqlalchemy.orm import Session
 
@@ -71,30 +70,14 @@ def get_main_course_api(
     return result
 
 
-# @router_course.post("/add_main_class")
-# def add_main_class_api(formData: MainClassIn, db: Session = Depends(get_db)):
-#     result = add_main_course(
-#         db=db,
-#         teacherName=formData.teacherName,
-#         teacherRoom=formData.teacherRoom,
-#         courseName=formData.courseName,
-#         className=formData.className,
-#         population=formData.population,
-#         software=formData.software,
-#         computerRoomName=formData.computerRoomName,
-#         week=formData.week,
-#         weekDay=formData.weekDay,
-#         lesson=formData.lesson,
-#         littleLesson=formData.littleLesson,
-#         cycle=formData.cycle,
-#     )
-#     return result
-
-
 @router_course.post("/add_main_class")
 def add_main_class_api(formData: MainClassIn, db: Session = Depends(get_db)):
-    for item in MainClassIn.data:
-        print(item)
-
     result = add_main_course(db=db, formData=formData)
     return result
+
+
+@router_course.post("/add_main_class_xlsx")
+def create_file(mianClassXlsx: bytes = File()):
+    with open("backend/course_main.xlsx", "wb") as f:
+        f.write(mianClassXlsx)
+    return Response200(msg="上传成功")

@@ -113,9 +113,15 @@ def get_main_course(
 
 
 def add_main_course(db: Session, formData: MainClassIn):
-    mainclass = MainClass(**formData.model_dump())
-    db.add(mainclass)
-    db.commit()
-    db.refresh(mainclass)
-
-    return mainclass
+    if (
+        not db.query(MainClass)
+        .filter(MainClass.teacherName == formData.teacherName)
+        .filter(MainClass.courseName == formData.courseName)
+        .first()
+    ):
+        mainclass = MainClass(**formData.model_dump())
+        db.add(mainclass)
+        db.commit()
+        db.refresh(mainclass)
+        return mainclass
+    return Response400(msg="数据已存在")
