@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Query, File, UploadFile, Form
 from typing import List, Optional
 from sqlalchemy.orm import Session
 
-from core import get_db
+from core import get_db, insert_origin_courses_from_xlsx
 from crud import get_origin_course, get_main_course, add_main_course
 
 from schemas import Response200, Response400, OriginClassIn, MainClassIn
@@ -76,8 +76,14 @@ def add_main_class_api(formData: MainClassIn, db: Session = Depends(get_db)):
     return result
 
 
-@router_course.post("/add_main_class_xlsx")
-def create_file(mianClassXlsx: bytes = File()):
-    with open("backend/course_main.xlsx", "wb") as f:
+@router_course.post("/add_origin_class_xlsx")
+def create_file(mianClassXlsx: bytes = File(), db: Session = Depends(get_db)):
+    with open("backend/course_origin.xlsx", "wb") as f:
         f.write(mianClassXlsx)
+    insert_origin_courses_from_xlsx(db=db)
     return Response200(msg="上传成功")
+
+
+@router_course.post("/course_origin")
+def test(db: Session = Depends(get_db)):
+    insert_origin_courses_from_xlsx(db=db)
