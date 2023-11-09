@@ -9,6 +9,7 @@ class CodeEnum(int, Enum):
 
     SUCCESS = 200
     FAIL = 400
+    NOT_FOUND = 404
 
 
 class ResponseBasic(BaseModel):
@@ -30,3 +31,8 @@ class ResponseToken(Response200):
 class Response400(ResponseBasic):
     code: CodeEnum = CodeEnum.FAIL
     msg: str = "请求失败"
+
+
+class Response404(ResponseBasic):
+    code: CodeEnum = CodeEnum.NOT_FOUND
+    msg: str = "记录未找到"

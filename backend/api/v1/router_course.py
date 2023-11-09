@@ -4,9 +4,9 @@ from typing import List, Optional
 from sqlalchemy.orm import Session
 
 from core import get_db
-from crud import get_origin_course, get_main_course
+from crud import get_origin_course, get_main_course, add_main_course
 
-from schemas import Response200, Response400, OriginClassIn
+from schemas import Response200, Response400, OriginClassIn, MainClassIn
 
 router_course = APIRouter(tags=["课程相关"])
 
@@ -68,4 +68,33 @@ def get_main_course_api(
     )
     if not result:
         return Response400(msg="记录不存在")
+    return result
+
+
+# @router_course.post("/add_main_class")
+# def add_main_class_api(formData: MainClassIn, db: Session = Depends(get_db)):
+#     result = add_main_course(
+#         db=db,
+#         teacherName=formData.teacherName,
+#         teacherRoom=formData.teacherRoom,
+#         courseName=formData.courseName,
+#         className=formData.className,
+#         population=formData.population,
+#         software=formData.software,
+#         computerRoomName=formData.computerRoomName,
+#         week=formData.week,
+#         weekDay=formData.weekDay,
+#         lesson=formData.lesson,
+#         littleLesson=formData.littleLesson,
+#         cycle=formData.cycle,
+#     )
+#     return result
+
+
+@router_course.post("/add_main_class")
+def add_main_class_api(formData: MainClassIn, db: Session = Depends(get_db)):
+    for item in MainClassIn.data:
+        print(item)
+
+    result = add_main_course(db=db, formData=formData)
     return result
