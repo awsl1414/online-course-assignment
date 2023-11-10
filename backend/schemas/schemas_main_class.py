@@ -15,3 +15,7 @@ class MainClassIn(BaseModel):
     lesson: str
     littleLesson: str
     cycle: str
+
+
+class MainClassJsonIn(BaseModel):
+    data: List[MainClassIn]

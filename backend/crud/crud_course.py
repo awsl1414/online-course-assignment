@@ -5,7 +5,7 @@ from fastapi import Query, Depends
 from models import OriginClass, MainClass
 from core import get_db
 
-from schemas import Response400, MainClassIn
+from schemas import Response400, MainClassIn, Response200
 
 
 def get_origin_course(
@@ -125,3 +125,21 @@ def add_main_course(db: Session, formData: MainClassIn):
         db.refresh(mainclass)
         return mainclass
     return Response400(msg="数据已存在")
+
+
+def delete_main_course(db: Session, id: int):
+    query = db.query(MainClass).get(id)
+    if query:
+        db.delete(query)
+        db.commit()
+        return Response200(msg="删除成功")
+    return Response400(msg="数据不存在")
+
+
+def delete_origin_course(db: Session, id: int):
+    query = db.query(OriginClass).get(id)
+    if query:
+        db.delete(query)
+        db.commit()
+        return Response200(msg="删除成功")
+    return Response400(msg="数据不存在")
