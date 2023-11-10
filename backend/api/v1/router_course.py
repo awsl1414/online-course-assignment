@@ -83,13 +83,13 @@ def get_main_course_api(
     return result
 
 
-@router_course.post("/add_main_class")
+@router_course.post("/add_main_class", summary="添加详细课表")
 def add_main_class_api(formData: MainClassIn, db: Session = Depends(get_db)):
     result = add_main_course(db=db, formData=formData)
     return result
 
 
-@router_course.post("/add_origin_class_xlsx")
+@router_course.post("/add_origin_class_xlsx", summary="添加原始课表 by xlsx")
 def add_origin_class_xlsx_api(
     mianClassXlsx: bytes = File(), db: Session = Depends(get_db)
 ):
@@ -99,7 +99,7 @@ def add_origin_class_xlsx_api(
     return Response200(msg="上传成功")
 
 
-@router_course.post("/add_origin_class_json")
+@router_course.post("/add_origin_class_json", summary="添加原始课表 by json")
 def add_origin_class_json(formData: MainClassJsonIn, db: Session = Depends(get_db)):
     print(type(formData.data))
     print(formData.data[0])
@@ -107,19 +107,19 @@ def add_origin_class_json(formData: MainClassJsonIn, db: Session = Depends(get_d
     print(formData.data[2])
 
 
-@router_course.delete("/delete_main_class")
+@router_course.delete("/delete_main_class", summary="删除详细课表")
 def delete_main_class_api(id: int, db: Session = Depends(get_db)):
     result = delete_main_course(db=db, id=id)
     return result
 
 
-@router_course.delete("/delete_origin_class")
+@router_course.delete("/delete_origin_class", summary="删除原始课表")
 def delete_origin_class_api(id: int, db: Session = Depends(get_db)):
     result = delete_origin_course(db=db, id=id)
     return result
 
 
-@router_course.get("/test")
+@router_course.get("/test", summary="测试接口")
 def test(db: Session = Depends(get_db)):
     query = db.query(MainClass).get(1)
     print(query)
