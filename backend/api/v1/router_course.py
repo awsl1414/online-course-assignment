@@ -103,8 +103,7 @@ def add_origin_class_xlsx_api(
 def add_origin_class_json(formData: MainClassJsonIn, db: Session = Depends(get_db)):
     print(type(formData.data))
     print(formData.data[0])
-    print(formData.data[1])
-    print(formData.data[2])
+    return formData.data
 
 
 @router_course.delete("/delete_main_class", summary="删除详细课表")
