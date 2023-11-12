@@ -1,47 +1,29 @@
-# 机房课程表
+# frontend
 
-## 写代码历程
-1、创建文件夹
-        npm create vite@latest
-        cd Curriculum
-        npm install
-        npm run dev
-        npm install axios
-        npm install vue-router@4
+This template should help get you started developing with Vue 3 in Vite.
 
-    
-2、统一项目结构
+## Recommended IDE Setup
 
-    src 是源码目录
-    src/main.ts 是入口文件
-    src/views 是路由组件目录
-    src/components 是子组件目录
-    src/router 是路由目录
-    src/image 是图片
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-3、创建路由,并编写组件
-    路由router
-    组件login work 用于测试路由
+## Customize configuration
 
-4、创造课程表
-    添加了表格界面，进行了一点修饰，
-    使用生命周期请求了数据，
-    添加下拉框选择楼层，
-    点击下拉框在表格中显示信息
-##git初始和上传
-    git init 
-    git status
-    git add .
-    git commit -m "你的备注信息"
-    git push -u origin main
+See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-##引用插件网站
-    [vue](https://cn.vuejs.org/guide/quick-start.html#creating-a-vue-application)
-    [axios](https://www.axios-http.cn/)
-    [vue-router](https://router.vuejs.org/zh/installation.html)
-    [Element-plus](http://element-plus.org/zh-CN/guide/installation.html#%E7%8E%AF%E5%A2%83%E6%94%AF%E6%8C%81)
-    []()
-    []()
-    []()
+## Project Setup
 
+```sh
+npm install
+```
 
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```

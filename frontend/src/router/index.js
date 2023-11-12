@@ -1,12 +1,14 @@
-import login from "../components/Login.vue";
-import work from "../components/work.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 
+import Home from "../views/Home.vue";
+import Login from "../views/Login.vue";
+import NotFound from "../views/NotFound.vue";
+
 const routes = [
-  { path: "/login", name: "login", component: login },
-
-  { path: "/work", name: "work", component: work },
-
+  // 其中的name属性被官方弃用了
+  { path: "/home", component: Home },
+  { path: "/login", component: Login },
+  { path: "/404", component: NotFound },
   {
     path: "/:pathMatch(.*)*",
     redirect: "/login",
@@ -15,6 +17,14 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes: routes,
 });
+
+// 导航守卫：全局导航守卫
+router.beforeEach((to, form, next) => {
+  const token = localStorage.getItem("token");
+  if (!token) next("/login");
+  else next();
+});
+
 export default router;

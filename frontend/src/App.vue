@@ -1,28 +1,12 @@
-<script setup>
-import Login from "./components/Login.vue";
-import work from "./components/work.vue";
-</script>
+<script setup></script>
 
 <template>
-  <!-- <Login /> -->
-  <!-- <work></work> -->
-  <div>
-    
-    <RouterView></RouterView>
-  </div>
+  <nav>
+    <RouterLink to="/">Home</RouterLink><span>|</span>
+    <RouterLink to="/login">Login</RouterLink><span>|</span>
+    <RouterLink to="/404">NotFound</RouterLink>
+  </nav>
+  <RouterView />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>
