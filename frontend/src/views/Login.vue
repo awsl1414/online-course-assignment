@@ -36,7 +36,7 @@ import axios from "../axios/index.js";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 
-const TOKENURL = "api/v1/login";
+const TOKEN_URL = "api/v1/login";
 
 const form = ref({
   username: "",
@@ -44,7 +44,7 @@ const form = ref({
 });
 const router = useRouter();
 const login = () => {
-  axios.post(`${TOKENURL}`, form.value).then((res) => {
+  axios.post(`${TOKEN_URL}`, form.value).then((res) => {
     if (res.data.code != 200) alert("账号或密码错误");
     else {
       console.log(res.data.token);
@@ -66,27 +66,27 @@ const login = () => {
   justify-content: center;
   height: 100vh;
 }
-
-.welcome-title {
-  font-size: 32px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.login-form {
-  margin-top: 20px;
-  /* 修改输入框长短 */
-  width: 355px;
-}
-
-.login-button:hover {
-  background-color: #1784ba; /* 悬停时颜色更深 */
-}
 .login-card {
   max-width: 400px;
   width: 100%;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(77, 76, 76, 0.1);
+
+  .welcome-title {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .login-form {
+    margin-top: 20px;
+    /* 修改输入框长短 */
+    width: 355px;
+  }
+
+  .login-button:hover {
+    background-color: #1784ba; /* 悬停时颜色更深 */
+  }
 
   border-radius: 8px;
   text-align: center;

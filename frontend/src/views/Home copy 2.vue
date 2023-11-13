@@ -3,22 +3,23 @@
     <!-- 侧边栏 -->
     <el-aside width="200px">
       <el-scrollbar>
-        <el-menu :default-openeds="['1', '3']">
+        <el-menu :default-openeds="['1']">
           <el-sub-menu index="1">
             <template #title> 机房查询 </template>
             <el-menu-item-group title="Group 1"> </el-menu-item-group>
-            <el-sub-menu index="1-1" @click="getFloorHandle">
-              <template #title>楼层</template>
-              <el-menu-item
-                v-for="(floor, index) in floorData"
-                :key="index"
-                :index="`1-1-${index}`"
-                :click="getMainClassHandle(floor)"
+            <el-sub-menu index="1-1">
+              <template @click="getFloorHandle" #title>楼层</template>
+              <el-menu-item @click="getOriginClassHandle" index="1-1-1"
+                >C楼</el-menu-item
               >
-                {{ floor }}
-              </el-menu-item>
             </el-sub-menu>
-
+            <!-- <el-sub-menu
+              v-for="(floor, index) in floorData"
+              :key="index"
+              :index="index"
+            >
+              {{ floor }}
+            </el-sub-menu> -->
             <el-menu-item-group title="Group 2">
               <el-menu-item index="1-2">Option 2</el-menu-item>
             </el-menu-item-group>
@@ -55,39 +56,32 @@
       <!-- 主体内容 -->
       <el-main>
         <el-scrollbar>
-          <el-table :data="mainClassData">
+          <el-table :data="originClassData">
             <el-table-column prop="teacherName" label="教师" />
             <el-table-column prop="teacherRoom" label="教研室" />
             <el-table-column prop="className" label="班级" />
             <el-table-column prop="courseName" label="课程名" />
             <el-table-column prop="software" label="软件" />
-            <el-table-column prop="computerRoomName" label="机房" />
           </el-table>
         </el-scrollbar>
       </el-main>
     </el-container>
   </el-container>
-  <div>
-    <button @click="getOriginClassHandle">测试按钮</button>
-    <p>{{ floorData }}</p>
-  </div>
+  <div><button @click="getFloorHandle">测试按钮</button></div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
 import axios from "../axios/index.js";
-import { Setting } from "@element-plus/icons-vue";
 
-const MAIN_CLASS_URL = "/api/v1/get_main_course";
 const ORIGIN_CLASS_URL = "/api/v1/get_origin_course";
 const FLOOR_URL = "/api/v1/get_computer_room_floor";
 
-const mainClassData = ref();
 const originClassData = ref();
 const floorData = ref();
 
-const testHandle = (test) => {
-  console.log(test);
+const testHandle = () => {
+  console.log("");
 };
 
 const getOriginClassHandle = () => {
@@ -97,20 +91,11 @@ const getOriginClassHandle = () => {
   });
 };
 
-const getMainClassHandle = (floor) => {
-  axios
-    .get(MAIN_CLASS_URL, { params: { computerRoomName: floor + "01" } })
-    .then((res) => {
-      console.log(res.data);
-      mainClassData.value = res.data;
-    });
-};
 const getFloorHandle = () => {
-  if (!floorData.value)
-    axios.get(FLOOR_URL).then((res) => {
-      console.log(res.data);
-      floorData.value = Object.keys(res.data.floor);
-    });
+  axios.get(FLOOR_URL).then((res) => {
+    console.log(res.data);
+    floorData.value = res.data;
+  });
 };
 </script>
 
