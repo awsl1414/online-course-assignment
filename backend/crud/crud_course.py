@@ -57,7 +57,6 @@ def get_main_course(
         MainClass.className: className,
         MainClass.population: population,
         MainClass.software: software,
-        MainClass.computerRoomName: computerRoomName,
         MainClass.week: week,
         MainClass.weekDay: weekDay,
         MainClass.lesson: lesson,
@@ -67,6 +66,10 @@ def get_main_course(
     for column, value in filters.items():
         if value:
             query = query.filter(column == value)
+    if computerRoomName:
+        return query.filter(
+            MainClass.computerRoomName.ilike(f"%{computerRoomName}%")
+        ).all()
     return query.all()
 
 

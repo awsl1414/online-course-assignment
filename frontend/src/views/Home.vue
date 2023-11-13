@@ -7,13 +7,13 @@
           <el-sub-menu index="1">
             <template #title> 机房查询 </template>
             <el-menu-item-group title="Group 1"> </el-menu-item-group>
-            <el-sub-menu index="1-1" @click="getFloorHandle">
+            <el-sub-menu index="1-1">
               <template #title>楼层</template>
               <el-menu-item
                 v-for="(floor, index) in floorData"
                 :key="index"
                 :index="`1-1-${index}`"
-                :click="getMainClassHandle(floor)"
+                @click="getMainClassHandle(floor)"
               >
                 {{ floor }}
               </el-menu-item>
@@ -55,26 +55,47 @@
       <!-- 主体内容 -->
       <el-main>
         <el-scrollbar>
-          <el-table :data="mainClassData">
-            <el-table-column prop="teacherName" label="教师" />
-            <el-table-column prop="teacherRoom" label="教研室" />
-            <el-table-column prop="className" label="班级" />
-            <el-table-column prop="courseName" label="课程名" />
-            <el-table-column prop="software" label="软件" />
-            <el-table-column prop="computerRoomName" label="机房" />
+          <el-table :data="mainClassData" style="width: 100%">
+            <el-table-column
+              prop="computerRoomName"
+              label="机房"
+              width="60"
+            ></el-table-column>
+            <el-table-column
+              prop="teacherName"
+              label="教师"
+              width="72"
+            ></el-table-column>
+            <el-table-column
+              prop="teacherRoom"
+              label="教研室"
+              width="72"
+            ></el-table-column>
+            <el-table-column
+              prop="className"
+              label="班级"
+              width="120"
+            ></el-table-column>
+            <el-table-column
+              prop="courseName"
+              label="课程名"
+              width="135"
+            ></el-table-column>
+            <el-table-column prop="software" label="软件" width="135">
+            </el-table-column>
           </el-table>
         </el-scrollbar>
       </el-main>
     </el-container>
   </el-container>
   <div>
-    <button @click="getOriginClassHandle">测试按钮</button>
+    <button @click="getFloorHandle">测试按钮</button>
     <p>{{ floorData }}</p>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "../axios/index.js";
 import { Setting } from "@element-plus/icons-vue";
 
@@ -85,6 +106,13 @@ const FLOOR_URL = "/api/v1/get_computer_room_floor";
 const mainClassData = ref();
 const originClassData = ref();
 const floorData = ref();
+
+onMounted(() => {
+  axios.get(FLOOR_URL).then((res) => {
+    console.log(res.data);
+    floorData.value = Object.keys(res.data.floor);
+  });
+});
 
 const testHandle = (test) => {
   console.log(test);
