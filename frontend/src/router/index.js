@@ -23,7 +23,7 @@ const router = createRouter({
 // 导航守卫：全局导航守卫
 router.beforeEach((to, form, next) => {
   const token = localStorage.getItem("token");
-  if (!token) next("/login");
+  if (!token && to.path !== "/login") next("/login");
   else next();
 });
 
