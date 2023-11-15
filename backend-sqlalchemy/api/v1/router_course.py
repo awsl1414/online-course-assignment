@@ -8,6 +8,8 @@ from crud import (
     get_origin_course,
     get_main_course,
     add_main_course,
+    update_main_course,
+    update_origin_course,
     delete_main_course,
     delete_origin_course,
 )
@@ -18,6 +20,8 @@ from schemas import (
     OriginClassIn,
     MainClassIn,
     MainClassJsonIn,
+    UpadateMainClassIn,
+    UpadateOriginClassIn,
 )
 
 router_course = APIRouter(tags=["课程相关"])
@@ -104,6 +108,20 @@ def add_origin_class_json(formData: MainClassJsonIn, db: Session = Depends(get_d
     print(type(formData.data))
     print(formData.data[0])
     return formData.data
+
+
+@router_course.put("/update_main_class", summary="更新详细课表")
+def update_main_class_api(formData: UpadateMainClassIn, db: Session = Depends(get_db)):
+    result = update_main_course(db=db, formData=formData)
+    return result
+
+
+@router_course.put("/update_origin_class", summary="更新原始课表")
+def update_origin_class_api(
+    formData: UpadateOriginClassIn, db: Session = Depends(get_db)
+):
+    result = update_origin_course(db=db, formData=formData)
+    return result
 
 
 @router_course.delete("/delete_main_class", summary="删除详细课表")

@@ -1,11 +1,16 @@
 from sqlalchemy.orm import Session
 from typing import Optional
 from fastapi import Query, Depends
-
 from models import OriginClass, MainClass
 from core import get_db
 
-from schemas import Response400, MainClassIn, Response200
+from schemas import (
+    Response400,
+    MainClassIn,
+    Response200,
+    UpadateMainClassIn,
+    UpadateOriginClassIn,
+)
 
 
 def get_origin_course(
@@ -128,6 +133,50 @@ def add_main_course(db: Session, formData: MainClassIn):
         db.refresh(mainclass)
         return mainclass
     return Response400(msg="数据已存在")
+
+
+def update_main_course(db: Session, formData: UpadateMainClassIn):
+    filters = {}
+    updates = {}
+    for key, value in formData.model_dump().items():
+        if key[:2] != "re":
+            if value:
+                filters[key] = value
+        else:
+            if value:
+                updates[key[2:3].lower() + key[3:]] = value
+    if filters == updates:
+        return Response400(msg="数据相同，无需修改")
+    query = db.query(MainClass).filter_by(**filters)
+    if filters == {} or updates == {}:
+        return Response400(msg="参数错误")
+    elif not query.first():
+        return Response400(msg="数据不存在")
+    query.update(updates)
+    db.commit()
+    return db.query(MainClass).filter_by(**updates).first()
+
+
+def update_origin_course(db: Session, formData: UpadateOriginClassIn):
+    filters = {}
+    updates = {}
+    for key, value in formData.model_dump().items():
+        if key[:2] != "re":
+            if value:
+                filters[key] = value
+        else:
+            if value:
+                updates[key[2:3].lower() + key[3:]] = value
+    if filters == updates:
+        return Response400(msg="数据相同，无需修改")
+    query = db.query(OriginClass).filter_by(**filters)
+    if filters == {} or updates == {}:
+        return Response400(msg="参数错误")
+    elif not query.first():
+        return Response400(msg="数据不存在")
+    query.update(updates)
+    db.commit()
+    return db.query(OriginClass).filter_by(**updates).first()
 
 
 def delete_main_course(db: Session, id: int):

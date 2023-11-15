@@ -3,6 +3,8 @@ from .crud_course import (
     get_origin_course,
     get_main_course,
     add_main_course,
+    update_main_course,
+    update_origin_course,
     delete_main_course,
     delete_origin_course,
 )
