@@ -91,6 +91,8 @@
   <div>
     <button @click="getFloorHandle">测试按钮</button>
     <p>{{ floorData }}</p>
+
+    <RouterLink to="/test">测试页面</RouterLink>
   </div>
 </template>
 
@@ -98,6 +100,7 @@
 import { onMounted, ref } from "vue";
 import axios from "../axios/index.js";
 import { Setting } from "@element-plus/icons-vue";
+import { RouterLink } from "vue-router";
 
 const MAIN_CLASS_URL = "/api/v1/get_main_course";
 const ORIGIN_CLASS_URL = "/api/v1/get_origin_course";
@@ -127,7 +130,7 @@ const getOriginClassHandle = () => {
 
 const getMainClassHandle = (floor) => {
   axios
-    .get(MAIN_CLASS_URL, { params: { computerRoomName: floor + "01" } })
+    .get(MAIN_CLASS_URL, { params: { computerRoomName: floor } })
     .then((res) => {
       console.log(res.data);
       mainClassData.value = res.data;
