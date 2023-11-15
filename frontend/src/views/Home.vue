@@ -13,7 +13,7 @@
                 v-for="(floor, index) in floorData"
                 :key="index"
                 :index="`1-1-${index}`"
-                :click="getMainClassHandle(floor)"
+                @click="getMainClassHandle(floor)"
               >
                 {{ floor }}
               </el-menu-item>
