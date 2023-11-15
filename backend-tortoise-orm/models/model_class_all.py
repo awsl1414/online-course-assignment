@@ -14,5 +14,4 @@ class FinalClass(Model):
     week = fields.IntField(null=False, description="周次")
     weekDay = fields.IntField(null=False, description="星期")
     lesson = fields.CharField(max_length=255, null=False, description="节次")
-    littleLesson = fields.CharField(max_length=255, null=False, description="小节次")
     cycle = fields.CharField(max_length=255, null=False, description="周期")

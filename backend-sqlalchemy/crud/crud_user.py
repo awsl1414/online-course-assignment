@@ -4,8 +4,8 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 
 from models import User
-from core import get_db, settings
-from schemas import Response400
+from core import get_db, settings, get_password_hash
+from schemas import Response400, UpdateUserIn, Response200
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/login")
 
@@ -55,3 +55,17 @@ def create_user(
         db.refresh(user)
         return user
     return Response400(msg="用户已存在")
+
+
+def update_user(db: Session, user_obj: UpdateUserIn):
+    if user := db.query(User).filter(User.username == user_obj.username):
+        updates = {
+            "username": f"{user_obj.reUsername}",
+            "hashed_password": f"{get_password_hash(user_obj.rePassword)}",
+            "job_number": f"{user_obj.reJob_number}",
+            "permission": f"{user_obj.rePermission}",
+        }
+        user.update(updates)
+        db.commit()
+        return Response200(msg="修改成功")
+    return Response400(msg="用户不存在")

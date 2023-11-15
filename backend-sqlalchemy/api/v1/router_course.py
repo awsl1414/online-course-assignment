@@ -110,13 +110,13 @@ def add_origin_class_json(formData: MainClassJsonIn, db: Session = Depends(get_d
     return formData.data
 
 
-@router_course.put("/update_main_class", summary="更新详细课表")
+@router_course.put("/update_main_class", summary="更新详细课表", description="数据必须成对更新")
 def update_main_class_api(formData: UpadateMainClassIn, db: Session = Depends(get_db)):
     result = update_main_course(db=db, formData=formData)
     return result
 
 
-@router_course.put("/update_origin_class", summary="更新原始课表")
+@router_course.put("/update_origin_class", summary="更新原始课表", description="数据必须成对更新")
 def update_origin_class_api(
     formData: UpadateOriginClassIn, db: Session = Depends(get_db)
 ):
