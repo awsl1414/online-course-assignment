@@ -167,15 +167,18 @@ def update_origin_course(db: Session, formData: UpadateOriginClassIn):
         else:
             if value:
                 updates[key[2:3].lower() + key[3:]] = value
-    if filters == updates:
-        return Response400(msg="数据相同，无需修改")
+
     query = db.query(OriginClass).filter_by(**filters)
     if filters == {} or updates == {}:
         return Response400(msg="参数错误")
+    elif filters == updates:
+        return Response400(msg="数据相同，无需修改")
     elif not query.first():
         return Response400(msg="数据不存在")
+
     query.update(updates)
     db.commit()
+
     return db.query(OriginClass).filter_by(**updates).first()
 
 
