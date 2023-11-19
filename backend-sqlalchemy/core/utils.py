@@ -57,7 +57,7 @@ def insert_main_courses_from_json(db: Session):
 
 def insert_origin_courses_from_xlsx(db: Session):
     # 导入一个工作簿
-    wb = load_workbook("backend/course_origin.xlsx")
+    wb = load_workbook("backend-sqlalchemy/course_origin.xlsx")
     # 获取当前活动的工作表
     ws = wb.active
 
@@ -87,4 +87,4 @@ def insert_origin_courses_from_xlsx(db: Session):
             )
             db.add(OriginClass)
             db.commit()
-    os.remove("backend/course_origin.xlsx")
+    os.remove("backend-sqlalchemy/course_origin.xlsx")
