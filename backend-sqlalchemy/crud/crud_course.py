@@ -12,6 +12,16 @@ from schemas import (
     UpadateOriginClassIn,
 )
 
+"""
+    teacherName = Column(String, nullable=False)
+    teacherRoom = Column(String, nullable=False)
+    courseName = Column(String, nullable=False)
+    className = Column(String, nullable=False)
+    population = Column(String, nullable=False)
+    software = Column(String, nullable=False)
+    week = Column(String, nullable=False)
+"""
+
 
 def get_origin_course(
     db: Session,
@@ -19,8 +29,9 @@ def get_origin_course(
     teacherRoom: Optional[str] = Query(None),
     courseName: Optional[str] = Query(None),
     className: Optional[str] = Query(None),
+    population: Optional[str] = Query(None),
     software: Optional[str] = Query(None),
-    cycle: Optional[str] = Query(None),
+    week: Optional[str] = Query(None),
 ):
     query = db.query(OriginClass)
 
@@ -29,8 +40,9 @@ def get_origin_course(
         OriginClass.teacherRoom: teacherRoom,
         OriginClass.courseName: courseName,
         OriginClass.className: className,
+        OriginClass.population: population,
         OriginClass.software: software,
-        OriginClass.cycle: cycle,
+        OriginClass.week: week,
     }
     for column, value in filters.items():
         if value:
@@ -50,7 +62,6 @@ def get_main_course(
     week: Optional[int] = Query(None),
     weekDay: Optional[int] = Query(None),
     lesson: Optional[str] = Query(None),
-    littleLesson: Optional[str] = Query(None),
     cycle: Optional[str] = Query(None),
 ):
     query = db.query(MainClass)
@@ -65,7 +76,6 @@ def get_main_course(
         MainClass.week: week,
         MainClass.weekDay: weekDay,
         MainClass.lesson: lesson,
-        MainClass.littleLesson: littleLesson,
         MainClass.cycle: cycle,
     }
     for column, value in filters.items():

@@ -1,20 +1,17 @@
 from pydantic import BaseModel
 
 
-class OriginClass(BaseModel):
+class OriginClassIn(BaseModel):
     teacherName: str
+    teacherRoom: str
     courseName: str
     className: str
-    population: int
+    population: str
     software: str
-    cycle: str
+    week: str
 
     class Config:
         from_attributes = True
-
-
-class OriginClassIn(OriginClass):
-    pass
 
 
 class UpadateOriginClassIn(BaseModel):
@@ -22,11 +19,13 @@ class UpadateOriginClassIn(BaseModel):
     teacherRoom: str | None = None
     courseName: str | None = None
     className: str | None = None
+    population: str | None = None
     software: str | None = None
-    cycle: str | None = None
+    week: str | None = None
     reTeacherName: str | None = None
     reTeacherRoom: str | None = None
     reCourseName: str | None = None
     reClassName: str | None = None
+    rePopulation: str | None = None
     reSoftware: str | None = None
-    reCycle: str | None = None
+    reWeek: str | None = None

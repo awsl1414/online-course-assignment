@@ -26,6 +26,16 @@ from schemas import (
 
 router_course = APIRouter(tags=["课程相关"])
 
+"""
+    teacherName = Column(String, nullable=False)
+    teacherRoom = Column(String, nullable=False)
+    courseName = Column(String, nullable=False)
+    className = Column(String, nullable=False)
+    population = Column(String, nullable=False)
+    software = Column(String, nullable=False)
+    week = Column(String, nullable=False)
+"""
+
 
 @router_course.get("/get_origin_course", summary="原始课表查询")
 def get_origin_course_api(
@@ -34,8 +44,9 @@ def get_origin_course_api(
     teacherRoom: Optional[str] = Query(None),
     courseName: Optional[str] = Query(None),
     className: Optional[str] = Query(None),
+    population: Optional[str] = Query(None),
     software: Optional[str] = Query(None),
-    cycle: Optional[str] = Query(None),
+    week: Optional[str] = Query(None),
 ):
     result = get_origin_course(
         db=db,
@@ -43,8 +54,9 @@ def get_origin_course_api(
         teacherRoom=teacherRoom,
         courseName=courseName,
         className=className,
+        population=population,
         software=software,
-        cycle=cycle,
+        week=week,
     )
     if not result:
         return Response400(msg="记录不存在")
@@ -64,7 +76,6 @@ def get_main_course_api(
     week: Optional[int] = Query(None),
     weekDay: Optional[int] = Query(None),
     lesson: Optional[str] = Query(None),
-    littleLesson: Optional[str] = Query(None),
     cycle: Optional[str] = Query(None),
 ):
     result = get_main_course(
@@ -79,7 +90,6 @@ def get_main_course_api(
         week=week,
         weekDay=weekDay,
         lesson=lesson,
-        littleLesson=littleLesson,
         cycle=cycle,
     )
     if not result:
@@ -97,7 +107,7 @@ def add_main_class_api(formData: MainClassIn, db: Session = Depends(get_db)):
 def add_origin_class_xlsx_api(
     mianClassXlsx: bytes = File(), db: Session = Depends(get_db)
 ):
-    with open("backend/course_origin.xlsx", "wb") as f:
+    with open("backend-sqlalchemy/course_origin.xlsx", "wb") as f:
         f.write(mianClassXlsx)
     insert_origin_courses_from_xlsx(db=db)
     return Response200(msg="上传成功")

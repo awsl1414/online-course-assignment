@@ -9,6 +9,6 @@ class OriginClass(Base):
     teacherRoom = Column(String, nullable=False)
     courseName = Column(String, nullable=False)
     className = Column(String, nullable=False)
-    population = Column(Integer, nullable=False)
+    population = Column(String, nullable=False)
     software = Column(String, nullable=False)
-    cycle = Column(String, nullable=False)
+    week = Column(String, nullable=False)
