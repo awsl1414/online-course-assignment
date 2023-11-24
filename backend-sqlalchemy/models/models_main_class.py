@@ -12,7 +12,6 @@ class MainClass(Base):
     population = Column(String, nullable=False)
     software = Column(String, nullable=False)
     computerRoomName = Column(String, nullable=False)
-    week = Column(String, nullable=False)
-    weekDay = Column(String, nullable=False)
     lesson = Column(String, nullable=False)
+    # 周次
     cycle = Column(String, nullable=False)

@@ -33,7 +33,7 @@ router_course = APIRouter(tags=["课程相关"])
     className = Column(String, nullable=False)
     population = Column(String, nullable=False)
     software = Column(String, nullable=False)
-    week = Column(String, nullable=False)
+    cycle = Column(String, nullable=False)
 """
 
 
@@ -46,7 +46,7 @@ def get_origin_course_api(
     className: Optional[str] = Query(None),
     population: Optional[str] = Query(None),
     software: Optional[str] = Query(None),
-    week: Optional[str] = Query(None),
+    cycle: Optional[str] = Query(None),
 ):
     result = get_origin_course(
         db=db,
@@ -56,7 +56,7 @@ def get_origin_course_api(
         className=className,
         population=population,
         software=software,
-        week=week,
+        cycle=cycle,
     )
     if not result:
         return Response400(msg="记录不存在")
@@ -70,11 +70,9 @@ def get_main_course_api(
     teacherRoom: Optional[str] = Query(None),
     courseName: Optional[str] = Query(None),
     className: Optional[str] = Query(None),
-    population: Optional[int] = Query(None),
+    population: Optional[str] = Query(None),
     software: Optional[str] = Query(None),
     computerRoomName: Optional[str] = Query(None),
-    week: Optional[int] = Query(None),
-    weekDay: Optional[int] = Query(None),
     lesson: Optional[str] = Query(None),
     cycle: Optional[str] = Query(None),
 ):
@@ -87,8 +85,6 @@ def get_main_course_api(
         population=population,
         software=software,
         computerRoomName=computerRoomName,
-        week=week,
-        weekDay=weekDay,
         lesson=lesson,
         cycle=cycle,
     )

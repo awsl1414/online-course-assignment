@@ -11,7 +11,5 @@ class FinalClass(Model):
     population = fields.IntField(null=False, description="班级人数")
     software = fields.CharField(max_length=255, null=False, description="软件")
     computerRoomName = fields.CharField(max_length=255, null=False, description="机房名称")
-    week = fields.IntField(null=False, description="周次")
-    weekDay = fields.IntField(null=False, description="星期")
     lesson = fields.CharField(max_length=255, null=False, description="节次")
-    cycle = fields.CharField(max_length=255, null=False, description="周期")
+    cycle = fields.CharField(max_length=255, null=False, description="周次")

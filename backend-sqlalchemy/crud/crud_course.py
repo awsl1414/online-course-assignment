@@ -19,7 +19,7 @@ from schemas import (
     className = Column(String, nullable=False)
     population = Column(String, nullable=False)
     software = Column(String, nullable=False)
-    week = Column(String, nullable=False)
+    cycle = Column(String, nullable=False)
 """
 
 
@@ -31,7 +31,7 @@ def get_origin_course(
     className: Optional[str] = Query(None),
     population: Optional[str] = Query(None),
     software: Optional[str] = Query(None),
-    week: Optional[str] = Query(None),
+    cycle: Optional[str] = Query(None),
 ):
     query = db.query(OriginClass)
 
@@ -42,7 +42,7 @@ def get_origin_course(
         OriginClass.className: className,
         OriginClass.population: population,
         OriginClass.software: software,
-        OriginClass.week: week,
+        OriginClass.cycle: cycle,
     }
     for column, value in filters.items():
         if value:
@@ -73,8 +73,6 @@ def get_main_course(
         MainClass.className: className,
         MainClass.population: population,
         MainClass.software: software,
-        MainClass.week: week,
-        MainClass.weekDay: weekDay,
         MainClass.lesson: lesson,
         MainClass.cycle: cycle,
     }

@@ -11,4 +11,4 @@ class OriginClass(Base):
     className = Column(String, nullable=False)
     population = Column(String, nullable=False)
     software = Column(String, nullable=False)
-    week = Column(String, nullable=False)
+    cycle = Column(String, nullable=False)
