@@ -26,7 +26,7 @@ def init_db():
     db = next(get_db())  # 获取数据库session
     try:
         insert_main_courses_from_json(db)
-        insert_origin_courses_from_json(db)
+        # insert_origin_courses_from_json(db)
     finally:
         db.close()
 
