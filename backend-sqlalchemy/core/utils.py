@@ -81,7 +81,7 @@ def insert_origin_courses_from_xlsx(db: Session):
                 className=origin_data[2],
                 population=origin_data[3],
                 software=origin_data[4],
-                week=origin_data[5],
+                cycle=origin_data[5],
                 teacherRoom=origin_data[6],
             )
             db.add(OriginClass)

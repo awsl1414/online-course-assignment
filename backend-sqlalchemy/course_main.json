@@ -8,10 +8,7 @@
       "population": 50,
       "software": "无人机模拟器",
       "computerRoomName": "B501",
-      "week": 16,
-      "weekDay": 1,
       "lesson": "1-2",
-      "littleLesson": "1",
       "cycle": "1/16"
     },
     {
@@ -22,10 +19,9 @@
       "population": 45,
       "software": "photoshop",
       "computerRoomName": "C401",
-      "week": 16,
-      "weekDay": 1,
+
       "lesson": "3-4",
-      "littleLesson": "2",
+
       "cycle": "1/8"
     },
     {
@@ -36,10 +32,9 @@
       "population": 50,
       "software": "dreamweaver",
       "computerRoomName": "B502",
-      "week": 11,
-      "weekDay": 1,
+
       "lesson": "7-8",
-      "littleLesson": "1",
+
       "cycle": "1/8"
     },
     {
@@ -50,10 +45,9 @@
       "population": 45,
       "software": "mysql",
       "computerRoomName": "C502",
-      "week": 14,
-      "weekDay": 1,
+
       "lesson": "5-6",
-      "littleLesson": "1",
+
       "cycle": "8/16"
     },
     {
@@ -64,10 +58,8 @@
       "population": 60,
       "software": "vscode",
       "computerRoomName": "C501",
-      "week": 6,
-      "weekDay": 1,
       "lesson": "1-2",
-      "littleLesson": "2",
+
       "cycle": "1/16"
     },
     {
@@ -78,10 +70,7 @@
       "population": 57,
       "software": "java/eclipse",
       "computerRoomName": "C501",
-      "week": 16,
-      "weekDay": 1,
       "lesson": "3-4",
-      "littleLesson": "0",
       "cycle": "1/16"
     },
     {
@@ -92,10 +81,9 @@
       "population": 60,
       "software": "word",
       "computerRoomName": "C501",
-      "week": 15,
-      "weekDay": 1,
+
       "lesson": "lesson",
-      "littleLesson": "1-2",
+
       "cycle": "1/8"
     },
     {
@@ -106,10 +94,7 @@
       "population": 52,
       "software": "vmware",
       "computerRoomName": "C501",
-      "week": 16,
-      "weekDay": 1,
       "lesson": "lesson",
-      "littleLesson": "1",
       "cycle": "1/8"
     },
     {
@@ -120,10 +105,8 @@
       "population": 54,
       "software": "chrome",
       "computerRoomName": "C502",
-      "week": 8,
-      "weekDay": 1,
       "lesson": "lesson",
-      "littleLesson": "2",
+
       "cycle": "8/16"
     },
     {
@@ -134,10 +117,8 @@
       "population": 30,
       "software": "photoshop",
       "computerRoomName": "C501",
-      "week": 1,
-      "weekDay": 1,
       "lesson": "lesson",
-      "littleLesson": "1",
+
       "cycle": "1/16"
     },
     {
@@ -148,10 +129,7 @@
       "population": 45,
       "software": "xcode",
       "computerRoomName": "C501",
-      "week": 16,
-      "weekDay": 1,
       "lesson": "lesson",
-      "littleLesson": "1",
       "cycle": "1/16"
     }
   ]
