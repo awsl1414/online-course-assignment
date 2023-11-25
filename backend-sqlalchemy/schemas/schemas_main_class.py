@@ -10,6 +10,7 @@ class MainClassIn(BaseModel):
     population: str
     software: str
     computerRoomName: str
+    day: str
     lesson: str
     cycle: str
 
@@ -26,6 +27,7 @@ class UpadateMainClassIn(BaseModel):
     population: str | None = None
     software: str | None = None
     computerRoomName: str | None = None
+    day: str | None = None
     lesson: str | None = None
     cycle: str | None = None
     reTeacherName: str | None = None
@@ -33,6 +35,7 @@ class UpadateMainClassIn(BaseModel):
     reCourseName: str | None = None
     reClassName: str | None = None
     rePopulation: str | None = None
+    reDay: str | None = None
     reSoftware: str | None = None
     reComputerRoomName: str | None = None
     reLesson: str | None = None
