@@ -67,7 +67,7 @@ def insert_origin_courses_from_xlsx(db: Session):
         origin_data = []
         for row in rows:
             origin_data.append(row.value)
-        print(origin_data)
+        # print(origin_data)
         if (
             not db.query(models.OriginClass)
             .filter(models.OriginClass.teacherName == origin_data[0])

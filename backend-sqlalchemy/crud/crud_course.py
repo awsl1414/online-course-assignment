@@ -182,7 +182,7 @@ def update_origin_course(db: Session, formData: UpadateOriginClassIn):
     elif filters == updates:
         return Response400(msg="数据相同，无需修改")
     elif not query.first():
-        return Response400(msg="数据不存在")
+        return Response400(msg="数据不存在或表为空")
 
     query.update(updates)
     db.commit()

@@ -24,7 +24,7 @@ def get_computer_room_software(
 
 def get_computer_room_floor(db: Session, computerRoom: Optional[str] = Query(None)):
     query = db.query(OriginClass).with_entities(MainClass.computerRoomName).all()
-    # print(query)
+    print(query)
 
     floor_set = set()
     c_set = set()
@@ -33,13 +33,13 @@ def get_computer_room_floor(db: Session, computerRoom: Optional[str] = Query(Non
         if computerRoom:
             if item[0][:1] == computerRoom[:1]:
                 floor_set.add(item[0])
-                floor_dict.update({f"{item[0][:2]}": f"{list(floor_set)}"})
+                floor_dict.update({f"{item[0][:1]}": f"{list(floor_set)}"})
         else:
             if item[0][:1] == "B":
                 floor_set.add(item[0])
-                floor_dict.update({f"{item[0][:2]}": f"{list(floor_set)}"})
+                floor_dict.update({f"{item[0][:1]}": f"{list(floor_set)}"})
             if item[0][:1] == "C":
-                floor_set.add(item[0])
-                floor_dict.update({f"{item[0][:2]}": f"{list(floor_set)}"})
+                c_set.add(item[0])
+                floor_dict.update({f"{item[0][:1]}": f"{list(c_set)}"})
 
     return floor_dict
