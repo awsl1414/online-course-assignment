@@ -10,6 +10,7 @@ from core import (
     settings,
     insert_main_courses_from_json,
     insert_origin_courses_from_json,
+    insert_floor_from_json,
     get_db,
 )
 
@@ -27,6 +28,7 @@ def init_db():
     try:
         insert_main_courses_from_json(db)
         # insert_origin_courses_from_json(db)
+        insert_floor_from_json(db)
     finally:
         db.close()
 

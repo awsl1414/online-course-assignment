@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from typing import Optional
 from fastapi import Query, Depends
 
-from models import OriginClass, MainClass
+from models import OriginClass, MainClass, Floors
 from core import get_db
 
 
@@ -23,23 +23,25 @@ def get_computer_room_software(
 
 
 def get_computer_room_floor(db: Session, computerRoom: Optional[str] = Query(None)):
-    query = db.query(OriginClass).with_entities(MainClass.computerRoomName).all()
-    print(query)
-
-    floor_set = set()
+    query = db.query(Floors).all()
+    query_list = []
+    for i in query:
+        query_list.append(i.classRoomName)
+    # print(query_list)
+    b_set = set()
     c_set = set()
     floor_dict = {}
-    for item in query:
+    for item in query_list:
         if computerRoom:
-            if item[0][:1] == computerRoom[:1]:
-                floor_set.add(item[0])
-                floor_dict.update({f"{item[0][:1]}": f"{list(floor_set)}"})
+            if item[:1] == computerRoom[:1]:
+                b_set.add(item)
+                floor_dict.update({f"{item[:1]}": f"{list(b_set)}"})
         else:
-            if item[0][:1] == "B":
-                floor_set.add(item[0])
-                floor_dict.update({f"{item[0][:1]}": f"{list(floor_set)}"})
-            if item[0][:1] == "C":
-                c_set.add(item[0])
-                floor_dict.update({f"{item[0][:1]}": f"{list(c_set)}"})
+            if item[:1] == "B":
+                b_set.add(item)
+                floor_dict.update({f"{item[:1]}": f"{list(b_set)}"})
+            if item[:1] == "C":
+                c_set.add(item)
+                floor_dict.update({f"{item[:1]}": f"{list(c_set)}"})
 
     return floor_dict

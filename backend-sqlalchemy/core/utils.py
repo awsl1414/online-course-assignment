@@ -87,3 +87,23 @@ def insert_origin_courses_from_xlsx(db: Session):
             db.add(OriginClass)
             db.commit()
     os.remove("backend-sqlalchemy/course_origin.xlsx")
+
+
+def insert_floor_from_json(db: Session):
+    with open(f"{BASE_DIR}/floor.json", "r", encoding="utf-8") as f:
+        floors = json.load(f)["floors"]
+    for floor in floors:
+        for i in floors[f"{floor}"]:
+            # 检查是否存在相同的记录
+            existing_floor = (
+                db.query(models.Floors)
+                .filter(
+                    models.Floors.classRoomName == i,
+                )
+                .first()
+            )
+            if not existing_floor:
+                new_floor = models.Floors(classRoomName=i)
+                db.add(new_floor)
+
+    db.commit()
