@@ -1,19 +1,9 @@
-def get_computer_room_floor(db: Session, computerRoom: Optional[str] = Query(None)):
-    query = db.query(Floors).all()
-    floor_set = set()
-    c_set = set()
-    floor_dict = {}
-    for item in query:
-        if computerRoom:
-            if item[0][:1] == computerRoom[:1]:
-                floor_set.add(item[0])
-                floor_dict.update({f"{item[0][:1]}": f"{list(floor_set)}"})
-        else:
-            if item[0][:1] == "B":
-                floor_set.add(item[0])
-                floor_dict.update({f"{item[0][:1]}": f"{list(floor_set)}"})
-            if item[0][:1] == "C":
-                c_set.add(item[0])
-                floor_dict.update({f"{item[0][:1]}": f"{list(c_set)}"})
+from uvicorn import run
 
-    return floor_dict
+
+from api import app
+
+
+if __name__ == "__main__":
+    # run("main:app", host="0.0.0.0", port=5000, reload=True)
+    run("main:app", host="127.0.0.1", port=5000, reload=True)
