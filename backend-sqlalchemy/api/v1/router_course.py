@@ -59,7 +59,7 @@ def get_origin_course_api(
         cycle=cycle,
     )
     if not result:
-        return Response400(msg="记录不存在")
+        return Response400(msg="记录不存在或表为空")
     return result
 
 
