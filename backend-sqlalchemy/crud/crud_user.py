@@ -43,7 +43,7 @@ def get_current_user(
 def create_user(
     db: Session, username: str, password: str, job_number: str, permission: int
 ):
-    if not db.query(User).filter(User.username).first():
+    if not db.query(User).filter(User.username == username).first():
         user = User(
             username=username,
             hashed_password=password,
@@ -54,6 +54,7 @@ def create_user(
         db.commit()
         db.refresh(user)
         return user
+
     return Response400(msg="用户已存在")
 
 
