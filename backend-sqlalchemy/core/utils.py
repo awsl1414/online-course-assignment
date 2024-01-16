@@ -57,16 +57,14 @@ def insert_main_courses_from_json(db: Session):
 
 def insert_origin_courses_from_xlsx(db: Session):
     # 导入一个工作簿
-    wb = load_workbook("backend-sqlalchemy/course_origin.xlsx")
+    wb = load_workbook(f"{BASE_DIR}/course_origin.xlsx")
     # 获取当前活动的工作表
     ws = wb.active
 
     max_row = ws.max_row
 
-    for rows in ws.iter_rows(min_row=2, max_row=max_row):
-        origin_data = []
-        for row in rows:
-            origin_data.append(row.value)
+    for rows in ws.iter_rows(min_row=2, max_row=max_row, values_only=True):
+        origin_data = list(rows)
         # print(origin_data)
         if (
             not db.query(models.OriginClass)
@@ -86,7 +84,7 @@ def insert_origin_courses_from_xlsx(db: Session):
             )
             db.add(OriginClass)
             db.commit()
-    os.remove("backend-sqlalchemy/course_origin.xlsx")
+    os.remove(f"{BASE_DIR}/course_origin.xlsx")
 
 
 def insert_floor_from_json(db: Session):

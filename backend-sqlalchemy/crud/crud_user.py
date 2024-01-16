@@ -1,43 +1,15 @@
+from fastapi import Depends, status, HTTPException
 from sqlalchemy.orm import Session
-from fastapi import Depends, HTTPException, status
+
 from fastapi.security import OAuth2PasswordBearer
-from jose import jwt, JWTError
+
 
 from models import User
-from core import get_db, settings, get_password_hash
+from core import get_password_hash, settings
+from jose import JWTError
 from schemas import Response400, UpdateUserIn, Response200
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/login")
-
-
-def get_current_user(
-    db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
-) -> User:
-    """
-    # oauth2_scheme -> 从请求头中取到 Authorization 的value
-    解析token 获取当前用户对象
-    :param token: 登录之后获取到的token
-    :return: 当前用户对象
-    """
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-
-    try:
-        payload = jwt.decode(
-            token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
-        )
-        username: str = payload.get("sub")
-        if username is None:
-            raise credentials_exception
-    except JWTError:
-        raise credentials_exception
-    user = db.query(User).filter(User.username == username).first()
-    if user is None:
-        raise credentials_exception
-    return user
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def create_user(
@@ -70,3 +42,32 @@ def update_user(db: Session, user_obj: UpdateUserIn):
         db.commit()
         return Response200(msg="修改成功")
     return Response400(msg="用户不存在")
+
+
+def get_current_user(
+    db: Session, user_obj: UpdateUserIn, token: str = Depends(oauth2_scheme)
+):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = JWTError.decode(
+            token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
+        )
+        username: str = payload.get("sub")
+        if username is None:
+            raise credentials_exception
+    except JWTError:
+        raise credentials_exception
+    user = db.query(User).filter(User.username == user_obj.username).first()
+    if user is None:
+        raise credentials_exception
+    return user
+
+
+def get_permissioned_user(permissioned_user: User = Depends(get_current_user)):
+    if User.permission == 2:
+        return permissioned_user
+    return HTTPException(status_code=400, detail="非管理员账户")

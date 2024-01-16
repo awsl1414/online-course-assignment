@@ -1,8 +1,7 @@
 from sqlalchemy.orm import Session
 from typing import Optional
-from fastapi import Query, Depends
+from fastapi import Query
 from models import OriginClass, MainClass
-from core import get_db
 
 from schemas import (
     Response400,
@@ -84,48 +83,6 @@ def get_main_course(
             MainClass.computerRoomName.ilike(f"%{computerRoomName}%")
         ).all()
     return query.all()
-
-
-# def add_main_course(
-#     db: Session,
-#     teacherName: str,
-#     teacherRoom: str,
-#     courseName: str,
-#     className: str,
-#     population: int,
-#     software: str,
-#     computerRoomName: str,
-#     week: int,
-#     weekDay: int,
-#     lesson: str,
-#     littleLesson: str,
-#     cycle: str,
-# ):
-#     if (
-#         not db.query(MainClass)
-#         .filter(MainClass.teacherName == teacherName)
-#         .filter(MainClass.courseName == courseName)
-#         .first()
-#     ):
-#         mainclass = MainClass(
-#             teacherName=teacherName,
-#             teacherRoom=teacherRoom,
-#             courseName=courseName,
-#             className=className,
-#             population=population,
-#             software=software,
-#             computerRoomName=computerRoomName,
-#             week=week,
-#             weekDay=weekDay,
-#             lesson=lesson,
-#             littleLesson=littleLesson,
-#             cycle=cycle,
-#         )
-#         db.add(mainclass)
-#         db.commit()
-#         db.refresh(mainclass)
-#         return mainclass
-#     return Response400(msg="用户已存在")
 
 
 def add_main_course(db: Session, formData: MainClassIn):

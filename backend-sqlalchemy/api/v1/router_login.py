@@ -1,17 +1,16 @@
-from fastapi import APIRouter, Depends, Response, HTTPException
+from fastapi import APIRouter, Depends, Response
 from fastapi.security import OAuth2PasswordRequestForm
-
 from sqlalchemy.orm import Session
 from models import User
 from core import verify_password, create_access_token, get_db
-from schemas import Response200, Response400, ResponseToken, UserIn
-from crud import get_current_user
+from schemas import Response200, Response400, ResponseToken
+
 
 router_login = APIRouter(tags=["登录相关"])
 
 
-@router_login.post("/login", summary="登录")
-def user_login(
+@router_login.post("/token", summary="登录")
+def login_for_access_token(
     response: Response,
     db: Session = Depends(get_db),
     form_data: OAuth2PasswordRequestForm = Depends(),
@@ -27,10 +26,10 @@ def user_login(
             user_dict["username"] = user.username
             user_dict["permission"] = user.permission
             return ResponseToken(token=token, user=str(user_dict), msg="请求成功")
-    return Response400(msg="请求失败")
+    return Response400(msg="账号或密码不正确")
 
 
 @router_login.put("/logout", summary="注销")
 def user_logout(response: Response):
     response.delete_cookie(key="token")
-    return Response200()
+    return Response200(msg="注销成功")

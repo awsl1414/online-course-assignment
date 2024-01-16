@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, Query
-from typing import List, Optional
+from typing import Optional
 from sqlalchemy.orm import Session
 
 from core import get_db
 from crud import get_computer_room_software, get_computer_room_floor
 
-from schemas import Response200, Response400, OriginClassIn
+from schemas import Response400
 
 router_computer_room = APIRouter(tags=["机房相关"])
 

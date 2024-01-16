@@ -1,4 +1,4 @@
-from .crud_user import create_user, get_current_user, update_user
+from .crud_user import create_user, update_user, get_current_user, get_permissioned_user
 from .crud_course import (
     get_origin_course,
     get_main_course,

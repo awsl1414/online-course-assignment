@@ -1,18 +1,14 @@
-from fastapi import APIRouter, Depends, HTTPException
-
+from fastapi import APIRouter, Depends
+from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
-from models import User
 from core import get_db, get_password_hash
-from schemas import Response200, Response400, UserIn, UpdateUserIn
-from crud import create_user, get_current_user, update_user
+from schemas import UserIn, UpdateUserIn
+from crud import create_user, update_user
 
 
 router_user = APIRouter(tags=["用户相关"])
 
-
-@router_user.get("/get_current_user", summary="获取当前用户")
-def get_current_user_api(db: Session = Depends(get_db)):
-    return get_current_user(db=db)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/token")
 
 
 @router_user.post("/create_user", summary="创建用户")

@@ -21,17 +21,21 @@
 git clone https://github.com/awsl1414/Online-course-scheduling-system.git
 ```
 
-### 2、启动后端
-
-> 提示：自己安装相关依赖
+### 2、安装依赖
 
 ```
-python backend/main.py
+pip install fastapi sqlalchemy uvicorn python-multipart openpyxl passlib pydantic_settings python-jose
+```
+
+### 2、启动后端
+
+```
+python backend/test.py
 ```
 
 前端：
 
-> 提示：提前安装 node 环境
+> 提示：提前安装 nodejs
 
 ```
 cd frontend
@@ -45,4 +49,4 @@ npm run dev
 
 ## 已知 BUG
 
-- 注销问题
+

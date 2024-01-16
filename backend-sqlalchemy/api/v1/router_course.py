@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends, Query, File, UploadFile, Form
-from typing import List, Optional
+from fastapi import APIRouter, Depends, Query, File
+from typing import Optional
 from sqlalchemy.orm import Session
 
 from models import MainClass, OriginClass
