@@ -24,7 +24,7 @@ git clone https://github.com/awsl1414/Online-course-scheduling-system.git
 ### 2、安装依赖
 
 ```
-pip install fastapi sqlalchemy uvicorn python-multipart openpyxl passlib pydantic_settings python-jose
+pip install fastapi sqlalchemy uvicorn python-multipart openpyxl passlib pydantic_settings python-jose bcrypt
 ```
 
 ### 2、启动后端
