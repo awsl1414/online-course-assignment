@@ -30,7 +30,8 @@ pip install fastapi sqlalchemy uvicorn python-multipart openpyxl passlib pydanti
 ### 2、启动后端
 
 ```
-python backend/test.py
+cd backend-sqlalchemy
+python test.py
 ```
 
 前端：
