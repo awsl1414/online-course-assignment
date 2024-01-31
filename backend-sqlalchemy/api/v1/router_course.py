@@ -12,6 +12,7 @@ from crud import (
     update_origin_course,
     delete_main_course,
     delete_origin_course,
+    get_current_user,
 )
 
 from schemas import (
@@ -24,21 +25,12 @@ from schemas import (
     UpadateOriginClassIn,
 )
 
-router_course = APIRouter(tags=["课程相关"])
-
-"""
-    teacherName = Column(String, nullable=False)
-    teacherRoom = Column(String, nullable=False)
-    courseName = Column(String, nullable=False)
-    className = Column(String, nullable=False)
-    population = Column(String, nullable=False)
-    software = Column(String, nullable=False)
-    cycle = Column(String, nullable=False)
-"""
+router_course = APIRouter(tags=["课程路由"])
 
 
 @router_course.get("/get_origin_course", summary="原始课表查询")
 def get_origin_course_api(
+    current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
     teacherName: Optional[str] = Query(None),
     teacherRoom: Optional[str] = Query(None),
@@ -65,6 +57,7 @@ def get_origin_course_api(
 
 @router_course.get("/get_main_course", summary="详细课表查询")
 def get_main_course_api(
+    current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
     teacherName: Optional[str] = Query(None),
     teacherRoom: Optional[str] = Query(None),
@@ -94,14 +87,20 @@ def get_main_course_api(
 
 
 @router_course.post("/add_main_class", summary="添加详细课表")
-def add_main_class_api(formData: MainClassIn, db: Session = Depends(get_db)):
+def add_main_class_api(
+    formData: MainClassIn,
+    current_user: str = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     result = add_main_course(db=db, formData=formData)
     return result
 
 
 @router_course.post("/add_origin_class_xlsx", summary="添加原始课表 by xlsx")
 def add_origin_class_xlsx_api(
-    mianClassXlsx: bytes = File(), db: Session = Depends(get_db)
+    mianClassXlsx: bytes = File(),
+    current_user: str = Depends(get_current_user),
+    db: Session = Depends(get_db),
 ):
     with open("backend-sqlalchemy/course_origin.xlsx", "wb") as f:
         f.write(mianClassXlsx)
@@ -110,40 +109,62 @@ def add_origin_class_xlsx_api(
 
 
 @router_course.post("/add_origin_class_json", summary="添加原始课表 by json")
-def add_origin_class_json(formData: MainClassJsonIn, db: Session = Depends(get_db)):
+def add_origin_class_json(
+    formData: MainClassJsonIn,
+    current_user: str = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     print(type(formData.data))
     print(formData.data[0])
     return formData.data
 
 
-@router_course.put("/update_main_class", summary="更新详细课表", description="数据必须成对更新")
-def update_main_class_api(formData: UpadateMainClassIn, db: Session = Depends(get_db)):
+@router_course.put(
+    "/update_main_class", summary="更新详细课表", description="数据必须成对更新"
+)
+def update_main_class_api(
+    formData: UpadateMainClassIn,
+    current_user: str = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     result = update_main_course(db=db, formData=formData)
     return result
 
 
-@router_course.put("/update_origin_class", summary="更新原始课表", description="数据必须成对更新")
+@router_course.put(
+    "/update_origin_class", summary="更新原始课表", description="数据必须成对更新"
+)
 def update_origin_class_api(
-    formData: UpadateOriginClassIn, db: Session = Depends(get_db)
+    formData: UpadateOriginClassIn,
+    current_user: str = Depends(get_current_user),
+    db: Session = Depends(get_db),
 ):
     result = update_origin_course(db=db, formData=formData)
     return result
 
 
 @router_course.delete("/delete_main_class", summary="删除详细课表")
-def delete_main_class_api(id: int, db: Session = Depends(get_db)):
+def delete_main_class_api(
+    id: int,
+    current_user: str = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     result = delete_main_course(db=db, id=id)
     return result
 
 
 @router_course.delete("/delete_origin_class", summary="删除原始课表")
-def delete_origin_class_api(id: int, db: Session = Depends(get_db)):
+def delete_origin_class_api(
+    id: int,
+    current_user: str = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     result = delete_origin_course(db=db, id=id)
     return result
 
 
 @router_course.get("/test", summary="测试接口")
-def test(db: Session = Depends(get_db)):
+def test(current_user: str = Depends(get_current_user), db: Session = Depends(get_db)):
     query = db.query(MainClass).get(1)
     print(query)
     return query

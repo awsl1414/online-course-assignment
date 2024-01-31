@@ -3,10 +3,11 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from models import User
 from core import verify_password, create_access_token, get_db
+from crud import get_current_user
 from schemas import Response200, Response400, ResponseToken
 
 
-router_login = APIRouter(tags=["登录相关"])
+router_login = APIRouter(tags=["登录路由"])
 
 
 @router_login.post("/token", summary="登录")
@@ -30,6 +31,6 @@ def login_for_access_token(
 
 
 @router_login.put("/logout", summary="注销")
-def user_logout(response: Response):
+def user_logout(response: Response, current_user: str = Depends(get_current_user)):
     response.delete_cookie(key="token")
     return Response200(msg="注销成功")

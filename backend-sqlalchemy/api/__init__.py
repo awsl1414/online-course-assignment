@@ -1,8 +1,10 @@
 """
 create app
 """
-from fastapi import FastAPI
+
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
 
 
 from .v1 import v1
@@ -12,8 +14,9 @@ from core import (
     insert_origin_courses_from_json,
     insert_floor_from_json,
     get_db,
+    get_password_hash,
 )
-
+from crud import create_user
 
 app = FastAPI(title=settings.TITLE, description=settings.DESC)
 
@@ -43,5 +46,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 init_db()
