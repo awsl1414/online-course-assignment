@@ -11,10 +11,21 @@ router_user = APIRouter(tags=["用户路由"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/token")
 
 
+@router_user.get("/init_user")
+def init_user(db: Session = Depends(get_db)):
+    create_user(
+        db=db,
+        username="admin",
+        password=get_password_hash("123456"),
+        job_number="001",
+        permission=2,
+    )
+
+
 @router_user.post("/create_user", summary="创建用户")
 def create_user_api(
     user: UserIn,
-    # current_user: str = Depends(get_current_user),
+    current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
     user = create_user(
@@ -31,6 +42,7 @@ def create_user_api(
 @router_user.put("/update_user", summary="修改用户信息")
 def user_update(
     user_obj: UpdateUserIn,
+    current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
     """
