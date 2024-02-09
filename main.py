@@ -3,9 +3,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from utils import settings, init_db
+from api import v1
+
 
 app = FastAPI(title=settings.TITLE, description=settings.DESC)
 
+app.include_router(v1, prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,
@@ -15,6 +18,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-if __name__ == "__main__":
+
+def start_server():
     init_db()
     run("main:app", host="0.0.0.0", port=80)
+
+
+if __name__ == "__main__":
+    start_server()

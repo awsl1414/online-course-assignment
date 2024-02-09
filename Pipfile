@@ -1,0 +1,21 @@
+[[source]]
+url = "https://mirrors.bfsu.edu.cn/pypi/web/simple"
+verify_ssl = true
+name = "pip_conf_index_global"
+
+[packages]
+fastapi = "*"
+sqlalchemy = "*"
+uvicorn = "*"
+python-multipart = "*"
+openpyxl = "*"
+passlib = "*"
+pydantic-settings = "*"
+python-jose = "*"
+bcrypt = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
+python_full_version = "3.12.1"
