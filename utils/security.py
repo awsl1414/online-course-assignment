@@ -50,7 +50,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
 
 
 def authenticate_user(username: str, password: str, db: Session):
-    from models.models_user import ModelsUser
+    from models import ModelsUser
 
     user = db.query(ModelsUser).filter(ModelsUser.username == username).first()
     if not user:

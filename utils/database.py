@@ -38,3 +38,8 @@ def init_db():
     )
 
     Base.metadata.create_all(bind=engine)
+    db = next(get_db())
+    try:
+        db.commit()
+    finally:
+        db.close()

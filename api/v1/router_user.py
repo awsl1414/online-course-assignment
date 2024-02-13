@@ -10,15 +10,15 @@ router_user = APIRouter(tags=["用户路由"])
 
 init_user_data: SchemasUserCreate = SchemasUserCreate(
     username="admin",
-    hashed_password=get_password_hash("123456"),
+    hashed_password="123456",
     job_number="001",
     permission=2,
 )
 
 
-@router_user.get("/init_user", summary="初始化用户")
+@router_user.get("/init_user", summary="初始化用户", response_model=SchemasUserCreate)
 async def init_user(db: Session = Depends(get_db)):
-    create_user(db=db, user_data=init_user_data)
+    return create_user(db=db, user_data=init_user_data)
 
 
 @router_user.post("/create_user", summary="创建用户", response_model=SchemasUserCreate)
