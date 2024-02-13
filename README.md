@@ -23,13 +23,13 @@ git clone https://github.com/awsl1414/Online-course-scheduling-system.git
 pip install fastapi sqlalchemy uvicorn python-multipart openpyxl passlib pydantic_settings python-jose bcrypt
 
 # 启动
-cd Online-course-scheduling-system/backend
+cd online-course-scheduling-system
 python dev.py
 ```
 
 #### pipenv
 ```shell
-cd Online-course-scheduling-system/backend
+cd online-course-scheduling-system
 
 pip install pipenv
 
@@ -43,7 +43,7 @@ pipenv run python dev.py
 
 ```shell
 # 构建 docker image
-cd Online-course-scheduling-system/backend
+cd online-course-scheduling-system
 docker build -t demo .
 
 # 启动 
