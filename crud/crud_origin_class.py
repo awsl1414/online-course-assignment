@@ -67,3 +67,8 @@ def get_origin_class_by_field(db: Session, field_name: str, value: str):
         return db.query(ModelsOriginClass).filter(field == value).all()
     else:
         raise general_not_found()
+
+
+def get_origin_class_all(db: Session):
+
+    return db.query(ModelsOriginClass).all()

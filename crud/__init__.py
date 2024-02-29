@@ -9,11 +9,13 @@ from .crud_main_class import (
     delete_main_class,
     update_main_class,
     get_main_class_by_field,
+    get_main_class_all,
 )
 from .crud_origin_class import (
     create_origin_class,
     delete_origin_class,
     update_origin_class,
     get_origin_class_by_field,
+    get_origin_class_all,
 )
 from .crud_user import create_user, delete_user, update_user, get_user, get_current_user

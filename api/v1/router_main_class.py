@@ -7,6 +7,7 @@ from crud import (
     delete_main_class,
     update_main_class,
     get_main_class_by_field,
+    get_main_class_all,
 )
 from schemas import SchemasMainClassCreate, SchemasMainClassUpdate
 
@@ -53,3 +54,11 @@ async def main_class_get_by_field(
     value: str = None,
 ):
     return get_main_class_by_field(db=db, field_name=field_name, value=value)
+
+
+@router_main_class.get("/get_main_class_all", summary="获取所有主课程")
+async def main_class_get_all(
+    current_user: str = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    return get_main_class_all(db=db)

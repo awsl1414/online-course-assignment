@@ -8,6 +8,7 @@ from crud import (
     delete_origin_class,
     update_origin_class,
     get_origin_class_by_field,
+    get_origin_class_all,
 )
 from schemas import SchemasOriginClassCreate, SchemasOriginClassUpdate
 
@@ -57,3 +58,11 @@ async def origin_class_get_by_field(
     value: str = None,
 ):
     return get_origin_class_by_field(db=db, field_name=field_name, value=value)
+
+
+@router_origin_class.get("/get_origin_class_all", summary="获取所有原始课程")
+async def origin_class_get_all(
+    current_user: str = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    return get_origin_class_all(db=db)

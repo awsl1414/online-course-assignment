@@ -67,3 +67,8 @@ def get_main_class_by_field(db: Session, field_name: str, value: str):
         return db.query(ModelsMainClass).filter(field == value).all()
     else:
         raise general_not_found()
+
+
+def get_main_class_all(db: Session):
+
+    return db.query(ModelsMainClass).all()
