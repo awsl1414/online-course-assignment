@@ -13,3 +13,4 @@ class ModelsOriginClass(Base):
     cycle = Column(String, nullable=False, comment="周数")
     teacher_room = Column(String, nullable=False, comment="教研室")
     week_lesson_times = Column(Integer, nullable=False, comment="周课时")
+    is_ok = Column(Integer, nullable=False, default=0, comment="是否已经排课")
