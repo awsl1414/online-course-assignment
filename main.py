@@ -21,7 +21,7 @@ app.add_middleware(
 
 def start_server():
     init_db()
-    run("main:app", host="0.0.0.0", port=80)
+    run("main:app", host="0.0.0.0", port=5000)
 
 
 if __name__ == "__main__":

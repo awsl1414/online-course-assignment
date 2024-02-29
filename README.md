@@ -47,7 +47,7 @@ cd online-course-scheduling-system
 docker build -t demo .
 
 # 启动 
-docker run -d --name demo -p 80:80 demo
+docker run -d --name demo -p 5000:5000 demo
 ```
 
 ## 开发状态
