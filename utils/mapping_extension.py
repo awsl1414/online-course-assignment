@@ -8,7 +8,7 @@ model_mapping = {
 }
 
 computer_room_mapping = {
-    "机房名称": "computer_room",
+    "机房名称": "computer_room_name",
     "机房别名": "alias_name",
     "软件名称": "software_name",
 }

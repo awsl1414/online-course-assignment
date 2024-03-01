@@ -2,8 +2,8 @@ from typing import Optional, Any
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from crud import get_current_user
-from utils import get_db
+
+from utils import get_db, get_current_user
 from crud import (
     create_computer_room,
     delete_computer_room,
@@ -51,9 +51,9 @@ async def computer_room_update(
 
 @router_computer_room.get("/get_computer_room_by_field", summary="根据字段获取机房")
 async def computer_room_get_by_field(
+    field_name: str,
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
-    field_name: str = None,
     value: Any = None,
 ):
     return get_computer_room_by_field(db=db, field_name=field_name, value=value)

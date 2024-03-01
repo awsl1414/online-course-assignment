@@ -1,34 +1,8 @@
-from fastapi import Depends, status, HTTPException
-from fastapi.security import OAuth2PasswordBearer
-from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 
-from utils import settings, general_found, general_not_found
+from utils import general_found, general_not_found
 from models import ModelsUser
 from schemas import SchemasUserCreate
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/user_login")
-
-
-def get_current_user(token: str = Depends(oauth2_scheme)):
-    try:
-        payload = jwt.decode(
-            token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
-        )
-        username: str = payload.get("sub")
-        if username is None:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid authentication credentials",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-    except JWTError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="JWTError",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    return username
 
 
 def create_user(db: Session, user_data: SchemasUserCreate):

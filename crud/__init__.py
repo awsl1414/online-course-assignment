@@ -18,4 +18,4 @@ from .crud_origin_class import (
     get_origin_class_by_field,
     get_origin_class_all,
 )
-from .crud_user import create_user, delete_user, update_user, get_user, get_current_user
+from .crud_user import create_user, delete_user, update_user, get_user

@@ -1,9 +1,8 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from utils import get_db
+from utils import get_db, get_current_user
 from crud import (
-    get_current_user,
     create_origin_class,
     delete_origin_class,
     update_origin_class,
@@ -52,9 +51,9 @@ async def origin_class_update(
 
 @router_origin_class.get("/get_origin_class_by_field", summary="根据字段获取原始课程")
 async def origin_class_get_by_field(
+    field_name,
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
-    field_name: str = None,
     value: str = None,
 ):
     return get_origin_class_by_field(db=db, field_name=field_name, value=value)
@@ -65,4 +64,6 @@ async def origin_class_get_all(
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
+    print(current_user)
+    print("cnm")
     return get_origin_class_all(db=db)

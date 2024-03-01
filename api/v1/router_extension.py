@@ -3,7 +3,7 @@ from io import BytesIO
 from fastapi import APIRouter, Depends, File, UploadFile
 from sqlalchemy.orm import Session
 
-from crud import get_current_user
+
 from utils import (
     general_not_found,
     get_db,
@@ -11,6 +11,7 @@ from utils import (
     insert_data_from_dicts,
     insert_origin_class_from_xlsx_old,
     Response200,
+    get_current_user,
     BASE_DIR,
 )
 
