@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     # token相关
     ALGORITHM: str = "HS256"  # 加密算法
     SECRET_KEY: str = secrets.token_urlsafe(32)  # 随机生成的base64位字符串
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # token的时效 3 天 = 60 * 24 * 7
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # token的时效 7 天 = 60 * 24 * 7
 
     ORIGINS: list = [
         "http://localhost:5173",  # 本地前端
