@@ -64,6 +64,4 @@ async def origin_class_get_all(
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    print(current_user)
-    print("cnm")
     return get_origin_class_all(db=db)
