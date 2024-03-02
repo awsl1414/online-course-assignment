@@ -47,17 +47,9 @@ async def main_class_update(
 
 @router_main_class.get("/get_main_class_by_field", summary="根据字段获取主课程")
 async def main_class_get_by_field(
-    field_name: str,
+    field_name: str = None,
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
     value: str = None,
 ):
     return get_main_class_by_field(db=db, field_name=field_name, value=value)
-
-
-@router_main_class.get("/get_main_class_all", summary="获取所有主课程")
-async def main_class_get_all(
-    current_user: str = Depends(get_current_user),
-    db: Session = Depends(get_db),
-):
-    return get_main_class_all(db=db)

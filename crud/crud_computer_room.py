@@ -53,9 +53,9 @@ def update_computer_room(
 
 
 def get_computer_room_by_field(db: Session, field_name: str, value: str):
+    if value is None or field_name is None:
+        return db.query(ModelsComputerRoom).all()
     if hasattr(ModelsComputerRoom, field_name):
-        if value is None:
-            return db.query(ModelsComputerRoom).all()
         field = getattr(ModelsComputerRoom, field_name)
         return db.query(ModelsComputerRoom).filter(field == value).all()
     else:

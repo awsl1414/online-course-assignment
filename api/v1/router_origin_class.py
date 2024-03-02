@@ -51,17 +51,9 @@ async def origin_class_update(
 
 @router_origin_class.get("/get_origin_class_by_field", summary="根据字段获取原始课程")
 async def origin_class_get_by_field(
-    field_name,
+    field_name=None,
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db),
     value: str = None,
 ):
     return get_origin_class_by_field(db=db, field_name=field_name, value=value)
-
-
-@router_origin_class.get("/get_origin_class_all", summary="获取所有原始课程")
-async def origin_class_get_all(
-    current_user: str = Depends(get_current_user),
-    db: Session = Depends(get_db),
-):
-    return get_origin_class_all(db=db)

@@ -60,9 +60,9 @@ def update_origin_class(
 
 
 def get_origin_class_by_field(db: Session, field_name: str, value: str):
+    if field_name is None or value is None:
+        return db.query(ModelsOriginClass).all()
     if hasattr(ModelsOriginClass, field_name):
-        if value is None:
-            return db.query(ModelsOriginClass).all()
         field = getattr(ModelsOriginClass, field_name)
         return db.query(ModelsOriginClass).filter(field == value).all()
     else:

@@ -60,9 +60,9 @@ def update_main_class(
 
 
 def get_main_class_by_field(db: Session, field_name: str, value: str):
+    if field_name is None or value is None:
+        return db.query(ModelsMainClass).all()
     if hasattr(ModelsMainClass, field_name):
-        if value is None:
-            return db.query(ModelsMainClass).all()
         field = getattr(ModelsMainClass, field_name)
         return db.query(ModelsMainClass).filter(field == value).all()
     else:
