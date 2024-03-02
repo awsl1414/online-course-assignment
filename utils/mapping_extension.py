@@ -22,6 +22,7 @@ origin_class_mapping = {
     "周数": "cycle",
     "教研室": "teacher_room",
     "周课时": "week_lesson_times",
+    "标志位": "is_ok",
 }
 
 

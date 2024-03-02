@@ -26,7 +26,7 @@ async def create_upload_file(
     file: UploadFile = File(...),
     model_name: str = None,
 ):
-    from utils import model_mapping, base_mapping
+    from utils.mapping_extension import model_mapping, base_mapping
 
     if model_name not in model_mapping:
         raise general_not_found()

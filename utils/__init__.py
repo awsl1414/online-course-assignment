@@ -2,7 +2,6 @@ from .config import settings, BASE_DIR
 from .database import Base, engine, get_db, init_db
 from .exceptions_general import general_not_found, general_found
 
-
 from .security import (
     verify_password,
     get_password_hash,
